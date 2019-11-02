@@ -5,7 +5,7 @@ import {
   StyleSheet,
   Dimensions
 } from 'react-native';
-import Icons from 'react-native-vector-icons/FontAwesome5';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 const Details = (props) => {
   return (
@@ -13,16 +13,39 @@ const Details = (props) => {
       <Text style={styles.titleText}>
         Details
       </Text>
+
       <View style={styles.properties}>
+
         <View style={styles.property}>
-          <Icons name={'thermometer-half'} style={styles.icons} solid/>
+          <View style={styles.inProp}>
+            <Icon name={'thermometer-half'} style={styles.icons} />
+            <View style={styles.propertyText}>
+              <Text style={styles.propertyTitle}>Temperature</Text>
+              <Text style={styles.propertyDetail}>12</Text>
+            </View>
+          </View>
         </View>
-        <Text style={styles.property}>
-          1
-        </Text>
-        <Text style={styles.property}>
-          1
-        </Text>
+
+        <View style={styles.property}>
+          <View style={styles.inProp}>
+            <Icon name={'thermometer-half'} style={styles.icons} />
+            <View style={styles.propertyText}>
+              <Text style={styles.propertyTitle}>Temperature</Text>
+              <Text style={styles.propertyDetail}>12</Text>
+            </View>
+          </View>
+        </View>
+
+        <View style={styles.property}>
+          <View style={styles.inProp}>
+            <Icon name={'thermometer-half'} style={styles.icons} />
+            <View style={styles.propertyText}>
+              <Text style={styles.propertyTitle}>Temperature</Text>
+              <Text style={styles.propertyDetail}>12</Text>
+            </View>
+          </View>
+        </View>
+
       </View>
     </View>
   )
@@ -46,9 +69,27 @@ const styles = StyleSheet.create({
   property: {
     width: '50%',
     height: 50,
-    color: '#fff'
+    marginTop: 15
+  },
+  inProp: {
+    padding: 5,
+    flex: 1,
+    flexDirection: 'row'
   },
   icons: {
+    fontSize: 24,
+    width: '20%',
+    color: '#fff',
+    textAlignVertical: 'center'
+  },
+  propertyText: {
+    width: '80%'
+  },
+  propertyTitle: {
+    color: '#fff',
+    fontWeight: 'bold'
+  },
+  propertyDetail: {
     color: '#fff'
   }
 })

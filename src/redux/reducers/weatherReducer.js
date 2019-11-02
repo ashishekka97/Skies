@@ -28,6 +28,10 @@ const weatherReducer = (state = initialState, action) => {
       error: action.error,
       isLoading: false
     }
+
+    default: return {
+      ...state
+    }
   }
 }
 
