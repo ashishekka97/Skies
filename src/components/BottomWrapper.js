@@ -12,6 +12,7 @@ import color from '../utils/color';
 
 const BottomWrapper = (props) => {
   const { data } = props;
+  console.log(data)
 
   const getBackground = (condition) => {
     return color[condition];
@@ -20,12 +21,11 @@ const BottomWrapper = (props) => {
   return (
     <View style={
       {
-        backgroundColor: data.weather ? data.weather[0] ? getBackground(data.weather[0].icon) : '#000000' : '#000000',
-        height: '100%'
+        backgroundColor: data.weather ? data.weather[0] ? getBackground(data.weather[0].icon) : '#fff' : '#fff',
       }
     }>
       <View style={styles.content}>
-        <Details/>
+        <Details data={data}/>
         <HourlyForecast/>
         <WeeklyForecast/>
       </View>

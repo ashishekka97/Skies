@@ -6,20 +6,27 @@ import WeatherImage from '../components/WeatherImage';
 import BottomWrapper from '../components/BottomWrapper';
 import { connect } from 'react-redux';
 import { getWeatherData } from '../redux/actions';
+import Loader from '../components/Loader';
 
 class HomeScreen extends React.Component {
   componentDidMount() {
     console.log(this.props);
-    this.props.fetchData('Nagpur')
+    this.props.fetchData('Tokyo')
   }
 
   render() {
-    console.log(this.props)
+    console.log(this.props);
+    const { weather } = this.props;
     return (
-      <ScrollView>
-        <WeatherImage data={this.props.weather}/>
-        <BottomWrapper data={this.props.weather}/>
-      </ScrollView>
+      <>
+        {
+          weather.isLoading ? <Loader /> :
+          <ScrollView>
+            <WeatherImage data={weather}/>
+            <BottomWrapper data={weather}/>
+          </ScrollView>
+        }
+      </>
     )
   }
 }

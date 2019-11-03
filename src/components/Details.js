@@ -5,9 +5,48 @@ import {
   StyleSheet,
   Dimensions
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Details = (props) => {
+  const { data } = props;
+  console.log(props);
+  const details = [ {
+      name: 'Feels Like',
+      icon: 'thermostat',
+      data: data.main.temp
+    }, {
+      name: 'Temperature',
+      icon: 'thermometer-lines',
+      data: data.main.temp_max + " | " + data.main.temp_min,
+    }, {
+      name: 'Wind',
+      icon: 'weather-windy',
+      data: data.wind.speed + " | " + data.wind.deg,
+    }, {
+      name: 'Pressure',
+      icon: 'gauge',
+      data: data.main.pressure,
+    }, {
+      name: 'Humidity',
+      icon: 'water',
+      data: data.main.humidity
+    }, {
+      name: 'Clouds',
+      icon: 'cloud',
+      data: data.clouds.all
+    }, {
+      name: 'Sunrise',
+      icon: 'weather-sunset-up',
+      data: data.sys.sunrise,
+      style: 'solid'
+    }, {
+      name: 'Sunset',
+      icon: 'weather-sunset-down',
+      data: data.sys.sunset,
+      style: 'regular'
+    }
+  ];
+
   return (
     <View>
       <Text style={styles.titleText}>
@@ -16,35 +55,19 @@ const Details = (props) => {
 
       <View style={styles.properties}>
 
-        <View style={styles.property}>
-          <View style={styles.inProp}>
-            <Icon name={'thermometer-half'} style={styles.icons} />
-            <View style={styles.propertyText}>
-              <Text style={styles.propertyTitle}>Temperature</Text>
-              <Text style={styles.propertyDetail}>12</Text>
+        {
+          details.map(detail => {
+            return <View style={styles.property}>
+              <View style={styles.inProp}>
+                <Icon name={detail.icon} style={styles.icons} />
+                <View style={styles.propertyText}>
+                  <Text style={styles.propertyTitle}>{detail.name}</Text>
+                  <Text style={styles.propertyDetail}>{detail.data}</Text>
+                </View>
+              </View>
             </View>
-          </View>
-        </View>
-
-        <View style={styles.property}>
-          <View style={styles.inProp}>
-            <Icon name={'thermometer-half'} style={styles.icons} />
-            <View style={styles.propertyText}>
-              <Text style={styles.propertyTitle}>Temperature</Text>
-              <Text style={styles.propertyDetail}>12</Text>
-            </View>
-          </View>
-        </View>
-
-        <View style={styles.property}>
-          <View style={styles.inProp}>
-            <Icon name={'thermometer-half'} style={styles.icons} />
-            <View style={styles.propertyText}>
-              <Text style={styles.propertyTitle}>Temperature</Text>
-              <Text style={styles.propertyDetail}>12</Text>
-            </View>
-          </View>
-        </View>
+          })
+        }
 
       </View>
     </View>
@@ -80,17 +103,20 @@ const styles = StyleSheet.create({
     fontSize: 24,
     width: '20%',
     color: '#fff',
-    textAlignVertical: 'center'
+    textAlignVertical: 'center',
+    fontWeight: 'normal'
   },
   propertyText: {
     width: '80%'
   },
   propertyTitle: {
     color: '#fff',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontFamily: 'notoserif',
   },
   propertyDetail: {
-    color: '#fff'
+    color: '#fff',
+    fontFamily: 'notoserif',
   }
 })
 

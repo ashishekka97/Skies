@@ -23,7 +23,7 @@ const data = [
 
 const HourlyForecast = (props) => {
   return (
-    <View>
+    <View style={styles.container}>
       <Text style={styles.titleText}>
         Hourly ForeCast
       </Text>
@@ -71,6 +71,9 @@ const HourlyForecast = (props) => {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    marginTop: 15
+  },
   baseText: {
     fontFamily: 'Cochin',
     color: '#fff'
