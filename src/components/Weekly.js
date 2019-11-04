@@ -5,13 +5,15 @@ import {
   Text
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import { getTime } from '../utils/time';
 
 const Weekly = (props) => {
+  const { data } = props
   return (
     <View style={styles.container}>
       <View style={styles.left}>
         <Text style={styles.baseText}>
-          Sunday, 03
+          { getTime(data.time, "dddd DD") }
         </Text>
       </View>
       <View style={styles.center}>
@@ -21,11 +23,11 @@ const Weekly = (props) => {
       </View>
       <View style={styles.right}>
         <Text style={styles.baseText}>
-          28
+          {Math.round(data.temperatureMin)}
         </Text>
 
         <Text style={styles.baseText}>
-          19
+        {Math.round(data.temperatureMax)}
         </Text>
       </View>
     </View>

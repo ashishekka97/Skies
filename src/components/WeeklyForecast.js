@@ -7,17 +7,17 @@ import {
 import Weekly from './Weekly'
 
 const WeeklyForecast = (props) => {
+  const { daily } = props;
   return (
     <View>
       <Text style={styles.titleText}>
         Weekly ForeCast
       </Text>
-      <Weekly/>
-      <Weekly/>
-      <Weekly/>
-      <Weekly/>
-      <Weekly/>
-      <Weekly/>
+      {
+        daily.data ? (daily.data).map(data => {
+          return <Weekly data={data} />
+        }) : null
+      }
     </View>
   )
 }

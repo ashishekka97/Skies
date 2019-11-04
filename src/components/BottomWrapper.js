@@ -8,11 +8,10 @@ import Details from './Details';
 import HourlyForecast from './HourlyForecast';
 import WeeklyForecast from './WeeklyForecast';
 
-import color from '../utils/color';
+import color from '../utils/accent';
 
 const BottomWrapper = (props) => {
   const { data } = props;
-  console.log(data)
 
   const getBackground = (condition) => {
     return color[condition];
@@ -21,13 +20,13 @@ const BottomWrapper = (props) => {
   return (
     <View style={
       {
-        backgroundColor: data.weather ? data.weather[0] ? getBackground(data.weather[0].icon) : '#fff' : '#fff',
+        backgroundColor: data.currently ? getBackground(data.currently.icon) :'#297285',
       }
     }>
       <View style={styles.content}>
-        <Details data={data}/>
-        <HourlyForecast/>
-        <WeeklyForecast/>
+        <Details currently={data.currently} daily={data.daily}/>
+        <HourlyForecast daily={data.daily} hourly={data.hourly}/>
+        <WeeklyForecast daily={data.daily}/>
       </View>
     </View>
   )

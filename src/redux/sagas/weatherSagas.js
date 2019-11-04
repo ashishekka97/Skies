@@ -1,11 +1,10 @@
 import { put, call } from 'redux-saga/effects';
 import * as actions from '../actions';
-import { fetchWeatherByCityApi } from '../consumers/owmApiConsumer';
+import { fetchWeatherByLocation } from '../consumers/darkskyConsumer';
 
-export function* fetchWeatherByCity(action) {
+export function* fetchWeather(action) {
   try {
-    const weatherData = yield call(fetchWeatherByCityApi, action.city);
-    //console.log(weatherData)
+    const weatherData = yield call(fetchWeatherByLocation, action.lat, action.lon);
     yield put(actions.weatherDataSuccess(weatherData));
   } catch(error) {
     yield put(actions.weatherDataError(error));

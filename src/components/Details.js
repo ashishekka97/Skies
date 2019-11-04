@@ -2,48 +2,46 @@ import React from 'react';
 import {
   View,
   Text,
-  StyleSheet,
-  Dimensions
+  StyleSheet
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { getTime } from '../utils/time'
 
 const Details = (props) => {
-  const { data } = props;
+  const { currently, daily } = props;
   console.log(props);
   const details = [ {
       name: 'Feels Like',
       icon: 'thermostat',
-      data: data.main.temp
+      data: currently.apparentTemperature
     }, {
       name: 'Temperature',
       icon: 'thermometer-lines',
-      data: data.main.temp_max + " | " + data.main.temp_min,
+      data: daily.data[0] ? daily.data[0].apparentTemperatureHigh : '-' + " | " + daily.data[0] ? daily.data[0].apparentTemperatureLow : '-',
     }, {
       name: 'Wind',
       icon: 'weather-windy',
-      data: data.wind.speed + " | " + data.wind.deg,
+      data: currently.windSpeed + " | " + currently.windGust + " | " + currently.windBearing,
     }, {
       name: 'Pressure',
       icon: 'gauge',
-      data: data.main.pressure,
+      data: currently.pressure,
     }, {
       name: 'Humidity',
       icon: 'water',
-      data: data.main.humidity
+      data: currently.humidity
     }, {
       name: 'Clouds',
       icon: 'cloud',
-      data: data.clouds.all
+      data: currently.cloudCover
     }, {
       name: 'Sunrise',
       icon: 'weather-sunset-up',
-      data: data.sys.sunrise,
-      style: 'solid'
+      data: daily.data[0] ? getTime(daily.data[0].sunriseTime, 'h:m') + ' A.M' : '-',
     }, {
       name: 'Sunset',
       icon: 'weather-sunset-down',
-      data: data.sys.sunset,
-      style: 'regular'
+      data: daily.data[0] ? getTime(daily.data[0].sunsetTime, 'h:m') + ' P.M' : '-',
     }
   ];
 
@@ -56,8 +54,8 @@ const Details = (props) => {
       <View style={styles.properties}>
 
         {
-          details.map(detail => {
-            return <View style={styles.property}>
+          details.map((detail, idx) => {
+            return <View style={styles.property} key={idx}>
               <View style={styles.inProp}>
                 <Icon name={detail.icon} style={styles.icons} />
                 <View style={styles.propertyText}>

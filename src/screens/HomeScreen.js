@@ -10,12 +10,10 @@ import Loader from '../components/Loader';
 
 class HomeScreen extends React.Component {
   componentDidMount() {
-    console.log(this.props);
-    this.props.fetchData('Tokyo')
+    this.props.fetchData(37.8267, -122.4233)
   }
 
   render() {
-    console.log(this.props);
     const { weather } = this.props;
     return (
       <>
@@ -40,8 +38,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchData: (city) => {
-      return dispatch(getWeatherData(city))
+    fetchData: (lat, lon) => {
+      return dispatch(getWeatherData(lat, lon))
     }
   }
 }

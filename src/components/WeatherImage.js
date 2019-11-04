@@ -6,10 +6,10 @@ import {
   View,
   Text
 } from 'react-native';
-import background from '../utils/background';
+import background from '../utils/image';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const WeatherImage = (props) => {
+const WeatherImage =  (props) => {
   const { data } = props;
 
   const getBackground = (condition) => {
@@ -18,11 +18,11 @@ const WeatherImage = (props) => {
 
   return (
     <ImageBackground
-     source={ data.weather ? data.weather[0] ? getBackground(data.weather[0].icon) : require('../assets/images/clear-sky-day.jpg') : require('../assets/images/clear-sky-day.jpg')}
+     source={ data.currently ? getBackground(data.currently.icon) : require('../assets/bg/clear-day.png')}
      style={styles.image}
      resizeMode='cover'
     >
-      <View style={styles.container}>
+      {/* <View style={styles.container}>
         <View style={styles.innerContainer}>
           <Text style={styles.tempText}>
             {data.main.temp}
@@ -39,7 +39,7 @@ const WeatherImage = (props) => {
             {data.weather[0].description}
           </Text>
         </View>
-      </View>
+      </View> */}
     </ImageBackground>
   )
 }
@@ -47,7 +47,7 @@ const WeatherImage = (props) => {
 const styles = StyleSheet.create({
   image: {
     width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height / 1.5,
+    height: Dimensions.get('window').height / 2,
   },
   container: {
     flex: 1,

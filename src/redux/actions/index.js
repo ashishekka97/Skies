@@ -4,9 +4,10 @@ import {
   WEATHER_DATA_ERROR
 } from './types';
 
-export const getWeatherData = (city) => ({
+export const getWeatherData = (lat, lon) => ({
   type: WEATHER_DATA_REQUEST,
-  city
+  lat,
+  lon
 });
 
 export const weatherDataSuccess = (data) => ({

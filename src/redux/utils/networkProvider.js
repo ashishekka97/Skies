@@ -2,7 +2,7 @@ import axios from 'axios';
 
 
 const networkProvider = axios.create({
-	baseURL: 'https://api.openweathermap.org',
+	baseURL: 'https://api.darksky.net',
 	timeout:100000
 });
 
