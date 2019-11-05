@@ -1,57 +1,42 @@
 import React from 'react';
-import {
+import { 
   View,
   Text,
   StyleSheet
-} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { getTime } from '../utils/time'
+ } from "react-native";
+ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+ import { getTime } from "../utils/time";
 
-const Details = (props) => {
-  const { currently, daily } = props;
-  console.log(props);
+const WeeklyDetail = (props) => {
+  const { content } = props;
   const details = [ {
-      name: 'Feels Like',
-      icon: 'thermostat',
-      data: currently.apparentTemperature
-    }, {
-      name: 'Temperature',
-      icon: 'thermometer-lines',
-      data: daily.data[0] ? daily.data[0].apparentTemperatureHigh : '-' + " | " + daily.data[0] ? daily.data[0].apparentTemperatureLow : '-',
-    }, {
       name: 'Wind',
       icon: 'weather-windy',
-      data: currently.windSpeed + " | " + currently.windGust + " | " + currently.windBearing,
+      data: content.windSpeed,
     }, {
       name: 'Pressure',
       icon: 'gauge',
-      data: currently.pressure,
+      data: content.pressure,
     }, {
       name: 'Humidity',
       icon: 'water',
-      data: currently.humidity
+      data: content.humidity
     }, {
       name: 'Clouds',
       icon: 'cloud',
-      data: currently.cloudCover
+      data: content.cloudCover
     }, {
       name: 'Sunrise',
       icon: 'weather-sunset-up',
-      data: daily.data[0] ? getTime(daily.data[0].sunriseTime, 'h:m A') : '-',
+      data: getTime(content.sunriseTime, 'h:m a')
     }, {
       name: 'Sunset',
       icon: 'weather-sunset-down',
-      data: daily.data[0] ? getTime(daily.data[0].sunsetTime, 'h:m A') : '-',
+      data: getTime(content.sunsetTime, 'h:m a')
     }
   ];
-
   return (
-    <View>
-      <Text style={styles.titleText}>
-        Details
-      </Text>
-
-      <View style={styles.properties}>
+    <View style={styles.properties}>
 
         {
           details.map((detail, idx) => {
@@ -67,21 +52,11 @@ const Details = (props) => {
           })
         }
 
-      </View>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  baseText: {
-    fontFamily: 'Cochin',
-    color: '#fff'
-  },
-  titleText: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#fff'
-  },
   properties: {
     flex: 1,
     flexDirection: 'row',
@@ -118,4 +93,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Details;
+export default WeeklyDetail;

@@ -8,10 +8,12 @@ import {
 import { getTime } from '../utils/time';
 
 import { VictoryArea, VictoryChart, VictoryScatter, VictoryAxis } from "victory-native";
+import DataPoint from './DataPoint';
 
 const HourlyForecast = (props) => {
   const { hourly, daily } = props;
   const data = [];
+
   const yDomain = daily.data[0] ? [Math.round(daily.data[0].temperatureMin) - 5, Math.round(daily.data[0].temperatureMax)] : null
   {
     if (hourly.data) {
@@ -20,11 +22,11 @@ const HourlyForecast = (props) => {
         if(idx > 23) return;
         data.push({
           x: getTime(hour.time, 'H'),
-          y: Math.round(hour.apparentTemperature)
+          y: Math.round(hour.apparentTemperature),
+          icon: hour.icon
         })
       })
     }
-    console.log(data)
   }
   return (
     <View style={styles.container}>
@@ -47,13 +49,14 @@ const HourlyForecast = (props) => {
             <VictoryAxis
               crossAxis
               style={{ axis: {stroke: "none"}, tickLabels: {fill: "white"} }}
+              // tickFormat={(t) => getTime(t, 'h')}
             />
 
             <VictoryArea
               animate
               interpolation='natural'
               style={{
-                data: { fill: "black", stroke: "white", fillOpacity: '0.1', }
+                data: { fill: "black", stroke: "white", fillOpacity: '0.0', }
               }}
               data={data}
             />
@@ -69,6 +72,7 @@ const HourlyForecast = (props) => {
                 data: { fill: "white" },
                 labels: { fontSize: 15, fill: "#fff", padding: 15 }
               }}
+              dataComponent={<DataPoint/>}
             />
           </VictoryChart>
         }
