@@ -7,11 +7,18 @@ import {
 import Accordion from 'react-native-collapsible/Accordion';
 import Weekly from './Weekly';
 import WeeklyDetail from './WeeklyDetail';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import iconName from '.././utils/icons';
 
 const WeeklyForecast = (props) => {
   const [activeSections, updateActiveSections] = useState([]);
   const { daily } = props;
   const details = [];
+
+  const getIcon = (icon) => {
+    return <Icon name={iconName[icon]} style={styles.icons}/>
+  }
+
   if (daily.data) {
     (daily.data).map(data => {
       details.push({
@@ -20,9 +27,10 @@ const WeeklyForecast = (props) => {
           icon: data.icon,
           temperatureMin: data.temperatureMin,
           temperatureMax: data.temperatureMax,
+          precipProbability: data.precipProbability,
         },
         content: {
-          precipProbability: data.precipProbability,
+          summary: data.summary,
           cloudCover: data.cloudCover,
           humidity: data.humidity,
           windSpeed: data.windSpeed,
@@ -40,9 +48,10 @@ const WeeklyForecast = (props) => {
         icon: 'clear-sky',
         temperatureMin: 52.17,
         temperatureMax: 52.17,
+        precipProbability: 0.09,
       },
       content: {
-        precipProbability: 0.09,
+        summary: 'Foggy',
         cloudCover: 0.14,
         humidity: 0.52,
         windSpeed: 4,
@@ -69,8 +78,13 @@ const WeeklyForecast = (props) => {
   return (
     <View>
       <Text style={styles.titleText}>
-        Weekly ForeCast
+        This Week
       </Text>
+      <View style={styles.summaryContainer}>
+        <Text> { getIcon(daily.icon) } </Text>
+        <Text style={styles.dot}> · </Text>
+        <Text style={styles.summary}>{ daily.summary }</Text>
+      </View>
       <Accordion
         underlayColor='rgba(0, 0, 0, 0)'
         sections={details}
@@ -93,6 +107,26 @@ const styles = StyleSheet.create({
     fontWeight: 'bold', 
     color: '#fff'
   },
+  summaryContainer: {
+    paddingTop: 10,
+    alignItems: 'center',
+    flexDirection: 'row'
+  },
+  icons: {
+    fontSize: 24,
+    width: '20%',
+    color: '#fff',
+    textAlignVertical: 'center',
+    fontWeight: 'normal'
+  },
+  dot: {
+    fontSize: 32,
+    color: 'white',
+  },
+  summary: {
+    color: 'white',
+    fontSize: 16
+  }
 })
 
 export default WeeklyForecast;

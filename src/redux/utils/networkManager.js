@@ -1,8 +1,8 @@
-import networkProvider from './networkProvider';
+import { darkSkyProvider, hereMapsProvider } from './networkProvider';
 
 
 class NetworkManagerClass {
-	constructor() {
+	constructor(networkProvider) {
 		this.$http = networkProvider;
 	}
 
@@ -28,6 +28,5 @@ class NetworkManagerClass {
 	}
 }
 
-const NetworkManager = new NetworkManagerClass();
-
-export default NetworkManager;
+export const 	darkSkyAPI = new NetworkManagerClass(darkSkyProvider);
+export const hereMapsAPI = new NetworkManagerClass(hereMapsProvider);

@@ -20,17 +20,17 @@ const Weekly = (props) => {
     <View style={styles.container}>
       <View style={styles.left}>
         <Text style={styles.mainText}>
-          { getTime(header.time, "dddd DD") }
+          { getTime(header.time, "dddd") }
         </Text>
       </View>
       <View style={styles.center}>
         <Text>
-        <Icon name={getIcon(header.icon)} style={styles.icons}/>  
+          <Icon name={getIcon(header.icon)} style={styles.icons}/>  
         </Text>
       </View>
       <View style={styles.right}>
         <Text style={styles.baseText}>
-          {Math.round(header.temperatureMin)}  -  {Math.round(header.temperatureMax)}
+          {Math.round(header.temperatureMin)}  ~  {Math.round(header.temperatureMax)}
         </Text>
       </View>
     </View>
@@ -43,7 +43,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginVertical: 10,
-    alignItems: 'center'
+    alignItems: 'center',
+    height: 40,
   },
 
   baseText: {

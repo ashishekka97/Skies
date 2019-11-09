@@ -36,8 +36,13 @@ const WeeklyDetail = (props) => {
     }
   ];
   return (
-    <View style={styles.properties}>
+    <>
+      <View style={styles.summaryContainer}>
+        <Text> <Icon name={'information-variant'} style={styles.icons} /> </Text>
+        <Text style={styles.summary}>{ content.summary }</Text>
+      </View>
 
+      <View style={styles.properties}>
         {
           details.map((detail, idx) => {
             return <View style={styles.property} key={idx}>
@@ -51,8 +56,8 @@ const WeeklyDetail = (props) => {
             </View>
           })
         }
-
-    </View>
+      </View>
+    </>
   )
 }
 
@@ -90,6 +95,19 @@ const styles = StyleSheet.create({
   propertyDetail: {
     color: '#fff',
     fontFamily: 'notoserif',
+  },
+  summaryContainer: {
+    paddingTop: 10,
+    alignItems: 'center',
+    flexDirection: 'row'
+  },
+  dot: {
+    fontSize: 32,
+    color: 'white',
+  },
+  summary: {
+    color: 'white',
+    fontSize: 16
   }
 })
 

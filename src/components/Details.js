@@ -9,7 +9,6 @@ import { getTime } from '../utils/time'
 
 const Details = (props) => {
   const { currently, daily } = props;
-  console.log(props);
   const details = [ {
       name: 'Feels Like',
       icon: 'thermostat',
@@ -34,6 +33,14 @@ const Details = (props) => {
       name: 'Clouds',
       icon: 'cloud',
       data: currently.cloudCover
+    }, {
+      name: 'UV Index',
+      icon: 'sunglasses',
+      data: currently.uvIndex
+    }, {
+      name: 'Visibility',
+      icon: 'weather-fog',
+      data: currently.visibility
     }, {
       name: 'Sunrise',
       icon: 'weather-sunset-up',

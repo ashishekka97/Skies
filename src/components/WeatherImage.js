@@ -8,12 +8,17 @@ import {
 } from 'react-native';
 import background from '../utils/image';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import iconName from '../utils/icons';
 
 const WeatherImage =  (props) => {
-  const { data } = props;
+  const { data, reverseGeocode } = props;
 
   const getBackground = (condition) => {
     return background[condition];
+  }
+
+  const getIcon = (condition) => {
+    return iconName[condition]
   }
 
   return (
@@ -22,24 +27,21 @@ const WeatherImage =  (props) => {
      style={styles.image}
      resizeMode='cover'
     >
-      {/* <View style={styles.container}>
+      <View style={styles.container}>
         <View style={styles.innerContainer}>
           <Text style={styles.tempText}>
-            {data.main.temp}
+            {data.currently.apparentTemperature}
           </Text>
-          <Icon name={'white-balance-sunny'} style={styles.icons}/>
         </View>
 
-        <View style={styles.innerContainer}>
+        <View style={styles.innerContainer}>          
           <Text style={styles.subText}>
-            {data.main.temp_min + " | " + data.main.temp_max}
+            { reverseGeocode.Location.Address.City }
           </Text>
-          
-          <Text style={styles.subText}>
-            {data.weather[0].description}
-          </Text>
+          <Text style={styles.dot}> · </Text>
+          <Text style={styles.summary}>{data.currently.summary}</Text>
         </View>
-      </View> */}
+      </View>
     </ImageBackground>
   )
 }
@@ -58,7 +60,9 @@ const styles = StyleSheet.create({
   innerContainer: {
     flexDirection: "row",
     width: Dimensions.get('window').width,
-    justifyContent: 'space-around'
+    justifyContent: 'flex-start',
+    paddingLeft: 20,
+    alignItems: 'center',
   },
   tempText: {
     fontSize: 24,
@@ -71,6 +75,14 @@ const styles = StyleSheet.create({
     textAlignVertical: 'center',
     color: '#fff',
     fontSize: 32
+  },
+  dot: {
+    fontSize: 32,
+    color: 'white',
+  },
+  summary: {
+    color: 'white',
+    fontSize: 16
   }
 })
 

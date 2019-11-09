@@ -11,7 +11,7 @@ class DataPoint extends React.Component {
   }
 
   getY = (y) => {
-    let newY = y + 2;
+    let newY = y - 12;
     return newY;
   }
 
@@ -21,7 +21,6 @@ class DataPoint extends React.Component {
 
   render() {
     const {x, y, datum} = this.props;
-    console.log(datum)
     return (
       <Svg>
         <Path x={this.getX(x)} y={this.getY(y)} fill="white" d={this.getIcon(datum.icon)} />
