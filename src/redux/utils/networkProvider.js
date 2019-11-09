@@ -1,11 +1,19 @@
 import axios from 'axios';
 
-
-const networkProvider = axios.create({
-	baseURL: 'https://api.openweathermap.org',
-	timeout:100000
+const darkSkyProvider = axios.create({
+	baseURL: 'https://api.darksky.net',
+	timeout:10000
 });
 
-networkProvider.all = axios.all;
+const hereMapsProvider = axios.create({
+	baseURL: 'https://reverse.geocoder.api.here.com/6.2',
+	timeout:10000
+});
 
-export default networkProvider;
+darkSkyProvider.all = axios.all;
+hereMapsProvider.all = axios.all;
+
+export {
+	darkSkyProvider,
+	hereMapsProvider
+}

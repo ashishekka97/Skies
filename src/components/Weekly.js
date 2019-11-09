@@ -2,30 +2,35 @@ import React from 'react';
 import {
   View,
   StyleSheet,
-  Text
+  Text,
+  Dimensions
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { getTime } from '../utils/time';
+import iconName from '../utils/icons';
 
 const Weekly = (props) => {
+  const { header } = props;
+
+  const getIcon = (condition) => {
+    return iconName[condition];
+  }
+  
   return (
     <View style={styles.container}>
       <View style={styles.left}>
-        <Text style={styles.baseText}>
-          Sunday, 03
+        <Text style={styles.mainText}>
+          { getTime(header.time, "dddd") }
         </Text>
       </View>
       <View style={styles.center}>
         <Text>
-        <Icon name={'thermometer-half'} style={styles.icons}/>  
+          <Icon name={getIcon(header.icon)} style={styles.icons}/>  
         </Text>
       </View>
       <View style={styles.right}>
         <Text style={styles.baseText}>
-          28
-        </Text>
-
-        <Text style={styles.baseText}>
-          19
+          {Math.round(header.temperatureMin)}  ~  {Math.round(header.temperatureMax)}
         </Text>
       </View>
     </View>
@@ -38,11 +43,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginVertical: 10,
-    alignItems: 'center'
+    alignItems: 'center',
+    height: 40,
   },
 
   baseText: {
     fontFamily: 'Cochin',
+    color: '#fff'
+  },
+
+  mainText: {
+    fontSize: 16,
     color: '#fff'
   },
 
@@ -53,11 +64,11 @@ const styles = StyleSheet.create({
   },
 
   left: {
-
+    width: Dimensions.get('window').width / 3
   },
 
   center: {
-
+    textAlign: 'right'
   },
 
   right: {
@@ -66,7 +77,6 @@ const styles = StyleSheet.create({
 
   icons: {
     fontSize: 24,
-    width: '20%',
     color: '#fff',
     textAlignVertical: 'center'
   },

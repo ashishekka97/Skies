@@ -6,38 +6,40 @@ import {
   View,
   Text
 } from 'react-native';
-import background from '../utils/background';
+import background from '../utils/image';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import iconName from '../utils/icons';
 
-const WeatherImage = (props) => {
-  const { data } = props;
+const WeatherImage =  (props) => {
+  const { data, reverseGeocode } = props;
 
   const getBackground = (condition) => {
     return background[condition];
   }
 
+  const getIcon = (condition) => {
+    return iconName[condition]
+  }
+
   return (
     <ImageBackground
-     source={ data.weather ? data.weather[0] ? getBackground(data.weather[0].icon) : require('../assets/images/clear-sky-day.jpg') : require('../assets/images/clear-sky-day.jpg')}
+     source={ data.currently ? getBackground(data.currently.icon) : require('../assets/bg/clear-day.png')}
      style={styles.image}
      resizeMode='cover'
     >
       <View style={styles.container}>
         <View style={styles.innerContainer}>
           <Text style={styles.tempText}>
-            {data.main.temp}
+            {data.currently.apparentTemperature}
           </Text>
-          <Icon name={'white-balance-sunny'} style={styles.icons}/>
         </View>
 
-        <View style={styles.innerContainer}>
-          <Text style={styles.subText}>
-            {data.main.temp_min + " | " + data.main.temp_max}
+        <View style={styles.innerContainer}>          
+          <Text style={styles.summary}>
+            { reverseGeocode.Location.Address.City }
           </Text>
-          
-          <Text style={styles.subText}>
-            {data.weather[0].description}
-          </Text>
+          <Text style={styles.dot}> · </Text>
+          <Text style={styles.summary}>{data.currently.summary}</Text>
         </View>
       </View>
     </ImageBackground>
@@ -47,7 +49,7 @@ const WeatherImage = (props) => {
 const styles = StyleSheet.create({
   image: {
     width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height / 1.5,
+    height: Dimensions.get('window').height / 2,
   },
   container: {
     flex: 1,
@@ -58,7 +60,9 @@ const styles = StyleSheet.create({
   innerContainer: {
     flexDirection: "row",
     width: Dimensions.get('window').width,
-    justifyContent: 'space-around'
+    justifyContent: 'flex-start',
+    paddingLeft: 20,
+    alignItems: 'center',
   },
   tempText: {
     fontSize: 24,
@@ -71,6 +75,14 @@ const styles = StyleSheet.create({
     textAlignVertical: 'center',
     color: '#fff',
     fontSize: 32
+  },
+  dot: {
+    fontSize: 32,
+    color: 'white',
+  },
+  summary: {
+    color: 'white',
+    fontSize: 16
   }
 })
 

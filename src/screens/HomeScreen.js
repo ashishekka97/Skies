@@ -5,24 +5,34 @@ import {
 import WeatherImage from '../components/WeatherImage';
 import BottomWrapper from '../components/BottomWrapper';
 import { connect } from 'react-redux';
-import { getWeatherData } from '../redux/actions';
+import { getWeatherData, getReverseGeoCode  } from '../redux/actions';
 import Loader from '../components/Loader';
+import { requestLocationPermission } from '../utils/location';
 
 class HomeScreen extends React.Component {
+
   componentDidMount() {
-    console.log(this.props);
-    this.props.fetchData('Tokyo')
+    requestLocationPermission(this.updateLogic, this.errorLogic)
+  }
+
+  updateLogic = (position) => {
+    console.log('Yes');
+    this.props.fetchCity(position.coords.latitude, position.coords.longitude);
+    this.props.fetchData(position.coords.latitude, position.coords.longitude);
+  }
+
+  errorLogic = (error) => {
+    console.log(error)
   }
 
   render() {
-    console.log(this.props);
-    const { weather } = this.props;
+    const { weather, isLoading, location } = this.props;
     return (
       <>
         {
-          weather.isLoading ? <Loader /> :
+          isLoading ? <Loader /> :
           <ScrollView>
-            <WeatherImage data={weather}/>
+            <WeatherImage data={weather} reverseGeocode={location} />
             <BottomWrapper data={weather}/>
           </ScrollView>
         }
@@ -34,14 +44,20 @@ class HomeScreen extends React.Component {
 const mapStateToProps = (state) => {
   console.log(state);
   return {
-    weather: state.weather.data
+    weather: state.weather.data,
+    isLoading: state.weather.isLoading,
+    location: state.location.reverseGeocode
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchData: (city) => {
-      return dispatch(getWeatherData(city))
+    fetchData: (lat, lon) => {
+      return dispatch(getWeatherData(lat, lon))
+    },
+
+    fetchCity: (lat, lon) => {
+      return dispatch(getReverseGeoCode(lat, lon))
     }
   }
 }
