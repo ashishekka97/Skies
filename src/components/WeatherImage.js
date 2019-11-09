@@ -35,7 +35,7 @@ const WeatherImage =  (props) => {
         </View>
 
         <View style={styles.innerContainer}>          
-          <Text style={styles.subText}>
+          <Text style={styles.summary}>
             { reverseGeocode.Location.Address.City }
           </Text>
           <Text style={styles.dot}> · </Text>
