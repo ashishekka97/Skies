@@ -1,25 +1,6 @@
 import { put, call } from 'redux-saga/effects';
 import * as actions from '../actions';
-//import { getPosition, setPosition } from '../consumers/asyncStorageConsumer';
-import { fetchReverseGeocode } from '../consumers/hereMapsConsumer';
-
-// export function* getLocation() {
-//   try {
-//     const position = yield call(getPosition);
-//     yield put(actions.getLocationSuccess(position));
-//   } catch(error) {
-//     yield put(actions.getLocationError(error));
-//   }
-// }
-
-// export function* setLocation(position) {
-//   try {
-//     yield call(setPosition('position', position));
-//     yield put(actions.setLocationSuccess());
-//   } catch(error) {
-//     yield put(actions.setLocationError(error));
-//   }
-// }
+import { fetchReverseGeocode, fetchAutoComplete } from '../consumers/hereMapsConsumer';
 
 export function* getReverseGeocode(action) {
   try {
@@ -27,5 +8,14 @@ export function* getReverseGeocode(action) {
     yield put(actions.getReverseGeoCodeSuccess(reverseGeocode));
   } catch(error) {
     yield put(actions.getReverseGeoCodeError(error));
+  }
+}
+
+export function* getAutoComplete(action) {
+  try {
+    const autoComplete = yield call(fetchAutoComplete, action.query);
+    yield put(actions.getAutoCompleteSuccess(autoComplete))
+  } catch (error) {
+    yield put(actions.getAutoCompleteError(error));
   }
 }

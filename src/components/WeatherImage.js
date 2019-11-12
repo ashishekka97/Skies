@@ -7,11 +7,11 @@ import {
   Text
 } from 'react-native';
 import background from '../utils/image';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import iconName from '../utils/icons';
+import HomeScreenOptions from '../components/HomeScreenOptions';
 
 const WeatherImage =  (props) => {
-  const { data, reverseGeocode } = props;
+  const { data, reverseGeocode, navigation } = props;
 
   const getBackground = (condition) => {
     return background[condition];
@@ -27,6 +27,7 @@ const WeatherImage =  (props) => {
      style={styles.image}
      resizeMode='cover'
     >
+      <HomeScreenOptions styles={styles.menu} navigation={navigation} condition={data.currently.icon}/>
       <View style={styles.container}>
         <View style={styles.innerContainer}>
           <Text style={styles.tempText}>
@@ -49,13 +50,16 @@ const WeatherImage =  (props) => {
 const styles = StyleSheet.create({
   image: {
     width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height / 2,
+    height: Dimensions.get('window').height / 2.5,
+    flex: 1
   },
   container: {
-    flex: 1,
+    flex: 4,
     justifyContent: 'flex-start',
-    alignItems: 'center',
     paddingTop: 100,
+  },
+  menu: {
+    flex: 1,
   },
   innerContainer: {
     flexDirection: "row",

@@ -2,12 +2,19 @@ import {
   SET_LOCATION_REQUEST,
   SET_LOCATION_SUCCESS,
   SET_LOCATION_ERROR,
+
   GET_LOCATION_ERROR,
   GET_LOCATION_REQUEST,
   GET_LOCATION_SUCCESS,
+
   REVERSE_GEOCODING_REQUEST,
   REVERSE_GEOCODING_SUCCESS,
-  REVERSE_GEOCODING_ERROR
+  REVERSE_GEOCODING_ERROR,
+  
+  AUTOCOMPLETE_REQUEST,
+  AUTOCOMPLETE_SUCCESS,
+  AUTOCOMPLETE_ERROR,
+  AUTOCOMPLETE_RESET
 } from '../actions/types';
 
 const geocode = {
@@ -110,10 +117,26 @@ const reverseGeocode = {
   }
 }
 
+const suggestions = [
+  {
+    "label": "India, <b>Nag</b>pur",
+    "language": "en",
+    "countryCode": "IND",
+    "locationId": "NT_z2nC7t3W5n5Bri3-9osJxC",
+    "address": {
+      "country": "India",
+      "state": "MH",
+      "county": "<b>Nag</b>pur"
+    },
+    "matchLevel": "county"
+  }
+]
+
 const initialState = {
   isDoingIO: false,
   geocode: geocode,
   reverseGeocode: reverseGeocode,
+  suggestions: [],
   error: null
 }
 
@@ -121,12 +144,14 @@ const locationReducer = (state = initialState, action) => {
   switch(action.type) {
     case SET_LOCATION_REQUEST: return {
       ...state,
-      isDoingIO: true
+      isDoingIO: true,
+      error: null
     }
 
     case SET_LOCATION_SUCCESS: return {
       ...state,
-      isDoingIO: false
+      isDoingIO: false,
+      error: null
     }
 
     case SET_LOCATION_ERROR: return {
@@ -137,13 +162,15 @@ const locationReducer = (state = initialState, action) => {
 
     case GET_LOCATION_REQUEST: return {
       ...state,
-      isDoingIO: true
+      isDoingIO: true,
+      error: null
     }
 
     case GET_LOCATION_SUCCESS: return {
       ...state,
       geocode: action.position,
-      isDoingIO: false
+      isDoingIO: false,
+      error: null
     }
 
     case GET_LOCATION_ERROR: return {
@@ -154,13 +181,15 @@ const locationReducer = (state = initialState, action) => {
 
     case REVERSE_GEOCODING_REQUEST: return {
       ...state,
-      isDoingIO: true
+      isDoingIO: true,
+      error: null
     }
 
     case REVERSE_GEOCODING_SUCCESS: return {
       ...state,
       reverseGeocode: action.reverseGeocode,
-      isDoingIO: false
+      isDoingIO: false,
+      error: null
     }
 
     case REVERSE_GEOCODING_ERROR: return {
@@ -169,8 +198,32 @@ const locationReducer = (state = initialState, action) => {
       isDoingIO: true
     }
 
+    case AUTOCOMPLETE_REQUEST: return {
+      ...state,
+      suggestions: [],
+      error: null
+    }
+
+    case AUTOCOMPLETE_SUCCESS: return {
+      ...state,
+      suggestions: action.suggestions,
+      error: null
+    }
+
+    case AUTOCOMPLETE_ERROR: return {
+      ...state,
+      error: action.error
+    }
+
+    case AUTOCOMPLETE_RESET: return {
+      ...state,
+      suggestions: [],
+      error: null
+    }
+
     default: return {
-      ...state
+      ...state,
+      error: null
     }
   }
 }

@@ -17,15 +17,27 @@ export const requestLocationPermission = async(success, error) => {
     );
     if (granted === PermissionsAndroid.RESULTS.GRANTED) {
       console.log('You can use the location');
-      Geolocation.getCurrentPosition(
-        success,
-        error,
-        { enableHighAccuracy: false, timeout: 5000, maximumAge: 3600000 } 
-      );
+      getCurrentLocation(success, error)
     } else {
       console.log('Location permission denied');
     }
   } catch (err) {
     console.warn(err);
+  }
+}
+
+export const getCurrentLocation = async(success, error) => {
+  const hasLocationPermission = await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION);
+  if (hasLocationPermission) {
+    console.log(hasLocationPermission);
+    Geolocation.getCurrentPosition(
+      success,
+      error,
+      { enableHighAccuracy: false, timeout: 50000 } 
+    );
+  }
+  else {
+    console.log(hasLocationPermission);
+    requestLocationPermission(success, error);
   }
 }

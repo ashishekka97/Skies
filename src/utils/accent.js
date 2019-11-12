@@ -1,14 +1,14 @@
 const accent = {
-  'clear-day': '#297285',
-  'clear-night': '#5545A6',
-  'rain': '#788B9D',
-  'snow': '#929FBA',
-  'sleet': '#7D828D',
-  'wind': '#6B7999',
-  'fog': '#297285',
-  'cloudy': '#9FB9C2',
-  'cloudy-day': '#AACDD7',
-  'clousy-night': '#2A3B40',
+  'clear-day': '#6BB9DA',
+  'clear-night': '#375A9C',
+  'rain': '#2E8687',
+  'snow': '#417EB5',
+  'sleet': '#001F33',
+  'wind': '#492D70',
+  'fog': '#443C51',
+  'cloudy': '#C19A9F',
+  'partly-cloudy-day': '#C19A9F',
+  'partly-cloudy-night': '#082F2C',  
 }
 
 export default accent;

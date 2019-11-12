@@ -1,4 +1,4 @@
-import { darkSkyProvider, hereMapsProvider } from './networkProvider';
+import { darkSkyProvider, hereMapsProvider, autoCompleteProvider } from './networkProvider';
 
 
 class NetworkManagerClass {
@@ -30,3 +30,4 @@ class NetworkManagerClass {
 
 export const 	darkSkyAPI = new NetworkManagerClass(darkSkyProvider);
 export const hereMapsAPI = new NetworkManagerClass(hereMapsProvider);
+export const autoCompleteAPI = new NetworkManagerClass(autoCompleteProvider);
