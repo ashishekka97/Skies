@@ -101,7 +101,7 @@ const daily = {
 }
 
 const initialState = {
-  isLoading: false,
+  isLoading: true,
   data: {
     currently: currently,
     hourly: hourly,

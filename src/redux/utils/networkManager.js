@@ -1,4 +1,4 @@
-import { darkSkyProvider, hereMapsProvider } from './networkProvider';
+import { darkSkyProvider, hereMapsProvider, autoCompleteProvider, geocodingProvider } from './networkProvider';
 
 
 class NetworkManagerClass {
@@ -18,7 +18,6 @@ class NetworkManagerClass {
 		return this.$http["delete"](path, params);
 	}
 
-
 	put(path, params) {
 		return this.$http.put(path, params);
 	}
@@ -30,3 +29,5 @@ class NetworkManagerClass {
 
 export const 	darkSkyAPI = new NetworkManagerClass(darkSkyProvider);
 export const hereMapsAPI = new NetworkManagerClass(hereMapsProvider);
+export const autoCompleteAPI = new NetworkManagerClass(autoCompleteProvider);
+export const geocodeAPI = new NetworkManagerClass(geocodingProvider);

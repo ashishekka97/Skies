@@ -1,5 +1,5 @@
 import Geocoder from 'react-native-geocoding';
-import { googleMaps as key } from '../../../config/apiKeys';
+import { googleMaps as key } from '../../../configs/apiKeys';
 
 Geocoder.init(key); // use a valid API key
 

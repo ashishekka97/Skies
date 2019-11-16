@@ -16,7 +16,7 @@ import WindGraph from './WindGraph';
 import PrecipitationGraph from './PrecipitationGraph';
 
 const HourlyForecast = (props) => {
-  const [activeIndex = 0, updateActiveIndex] = useState([]);
+  const [activeIndex, updateActiveIndex] = useState(0);
   const { hourly, daily } = props;
   const temperatureData = [];
   const precipitationData = [];
