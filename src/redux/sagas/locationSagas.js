@@ -14,6 +14,7 @@ export function* getReverseGeocode(action) {
 export function* getGeocode(action) {
   try {
     const geocode = yield call(fetchGeocode, action.label);
+    console.log(geocode);
     yield put(actions.getGeocodeSuccess(geocode));
   } catch(error) {
     yield put(actions.getGeoCodeError(error));

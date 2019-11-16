@@ -6,17 +6,14 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-const SuggestionList = (props) => {
-  const { suggestions, onSelect } = props;
+const SavedList = (props) => {
+  const { places, onSelect } = props;
 
   const renderItem = (item) => {
+    console.log(item)
     return (
       <TouchableOpacity
         underlayColor='rgba(255, 255, 255, 0.3)'
-        onPress={() => {
-          console.log('Pressed');
-          onSelect(item.item.label)
-        }}
       >
         <Text style={styles.resultText}>{item.item.label}</Text>
       </TouchableOpacity>
@@ -26,23 +23,20 @@ const SuggestionList = (props) => {
   return (
     <FlatList
       style={styles.resultContainer}
-      data={suggestions}
+      data={places}
       renderItem={renderItem}
-      keyExtractor={item => item.locationId}
+      keyExtractor={(item, index) => index}
     />
   )
 }
 
 const styles = StyleSheet.create({
   resultContainer: {
-    position: 'absolute',
-    top: 130,
     width: '95%',
     margin: 10,
     marginTop: 0,
-    backgroundColor: 'rgba(0, 0, 0, 1)',
-    borderRadius: 12,
-    zIndex: 10
+    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+    borderRadius: 12
   },
 
   resultItem: {
@@ -56,4 +50,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default SuggestionList;
+export default SavedList;

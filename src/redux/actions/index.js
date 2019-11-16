@@ -14,7 +14,10 @@ import {
   AUTOCOMPLETE_REQUEST,
   AUTOCOMPLETE_SUCCESS,
   AUTOCOMPLETE_ERROR,
-  AUTOCOMPLETE_RESET
+  AUTOCOMPLETE_RESET,
+
+  SAVE_LOCATION_REQUEST,
+  DELETE_LOCATION_REQUEST
 } from './types';
 
 export const getWeatherData = (lat, lon) => ({
@@ -49,10 +52,9 @@ export const getReverseGeoCodeError = (error) => ({
   error
 })
 
-export const getGeocode = (lat, lon) => ({
+export const getGeocode = (label) => ({
   type: GEOCODING_REQUEST,
-  lat,
-  lon
+  label
 })
 
 export const getGeocodeSuccess = (geocode) => ({
@@ -82,4 +84,14 @@ export const getAutoCompleteError = (error) => ({
 
 export const resetAutoComplete = () => ({
   type: AUTOCOMPLETE_RESET
+})
+
+export const saveLocation = (location) => ({
+  type: SAVE_LOCATION_REQUEST,
+  location
+})
+
+export const deleteLocation = (index) => ({
+  type: DELETE_LOCATION_REQUEST,
+  index
 })
