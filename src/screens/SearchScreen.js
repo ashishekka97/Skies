@@ -8,8 +8,9 @@ import {
 } from 'react-native';
 import SearchBar from '../components/SearchBar';
 import { connect } from "react-redux";
-import { getAutoComplete, resetAutoComplete } from '../redux/actions';
+import { getAutoComplete, resetAutoComplete, getGeocode } from '../redux/actions';
 import debounced from '../utils/debounced';
+import SuggestionList from '../components/SuggestionList';
 
 const DEBOUNCE_MS = 500;
 
@@ -17,6 +18,7 @@ class SearchScreen extends React.Component {
   constructor(props) {
     super(props);
     this.textInput = null;
+
   }
 
   static navigationOptions = {
@@ -37,18 +39,6 @@ class SearchScreen extends React.Component {
     this.props.reset();
   }
 
-  renderResultList = () => {
-    return (
-      <FlatList
-        data={this.props.suggestions}
-        renderItem={(item) => {
-          console.log(item);
-          return <Text>{item}</Text>
-        }}
-      />
-    )
-  }
-
   render() {
     const { navigation } = this.props;
     return (
@@ -61,15 +51,7 @@ class SearchScreen extends React.Component {
         <View style={styles.container}>
           <SearchBar onChangeText={this.getSuggestions} onEndEditing={this.resetSuggestions}/>
         </View>
-        <FlatList
-          data={this.props.suggestions}
-          renderItem={item => {
-            console.log(item)
-            return <Text style={styles.resultText}>{item.item.label}</Text>
-          }}
-          keyExtractor={item => item.locationId}
-          style={styles.resultContainer}
-        />
+        <SuggestionList suggestions={this.props.suggestions} onSelect={this.props.geocode}/>
       </View>
     )
   }
@@ -78,22 +60,6 @@ const styles = StyleSheet.create({
   container: {
     margin: 10,
     paddingTop: 60,
-  },
-
-  resultContainer: {
-    position: 'absolute',
-    top: 130,
-    width: '95%',
-    margin: 10,
-    marginTop: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.1)',
-    borderRadius: 12
-  },
-
-  resultText: {
-    color: 'white',
-    fontSize: 16,
-    padding: 10,
   }
 })
 
@@ -112,6 +78,10 @@ const mapDispatchToProps = (dispatch) => {
 
     reset: () => {
       dispatch(resetAutoComplete())
+    },
+
+    geocode: (label) => {
+      dispatch(getGeocode(label))
     }
   }
 }

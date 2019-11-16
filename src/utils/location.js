@@ -29,11 +29,9 @@ export const requestLocationPermission = async(success, error) => {
 export const getCurrentLocation = async(success, error) => {
   const hasLocationPermission = await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION);
   if (hasLocationPermission) {
-    console.log(hasLocationPermission);
     Geolocation.getCurrentPosition(
       success,
-      error,
-      { enableHighAccuracy: false, timeout: 50000 } 
+      error
     );
   }
   else {

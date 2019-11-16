@@ -1,6 +1,6 @@
 import { put, call } from 'redux-saga/effects';
 import * as actions from '../actions';
-import { fetchReverseGeocode, fetchAutoComplete } from '../consumers/hereMapsConsumer';
+import { fetchReverseGeocode, fetchAutoComplete, fetchGeocode } from '../consumers/hereMapsConsumer';
 
 export function* getReverseGeocode(action) {
   try {
@@ -8,6 +8,15 @@ export function* getReverseGeocode(action) {
     yield put(actions.getReverseGeoCodeSuccess(reverseGeocode));
   } catch(error) {
     yield put(actions.getReverseGeoCodeError(error));
+  }
+}
+
+export function* getGeocode(action) {
+  try {
+    const geocode = yield call(fetchGeocode, action.label);
+    yield put(actions.getGeocodeSuccess(geocode));
+  } catch(error) {
+    yield put(actions.getGeoCodeError(error));
   }
 }
 

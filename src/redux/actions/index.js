@@ -7,6 +7,10 @@ import {
   REVERSE_GEOCODING_SUCCESS,
   REVERSE_GEOCODING_ERROR,
 
+  GEOCODING_REQUEST,
+  GEOCODING_SUCCESS,
+  GEOCODING_ERROR,
+
   AUTOCOMPLETE_REQUEST,
   AUTOCOMPLETE_SUCCESS,
   AUTOCOMPLETE_ERROR,
@@ -42,6 +46,22 @@ export const getReverseGeoCodeSuccess = (reverseGeocode) => ({
 
 export const getReverseGeoCodeError = (error) => ({
   type: REVERSE_GEOCODING_ERROR,
+  error
+})
+
+export const getGeocode = (lat, lon) => ({
+  type: GEOCODING_REQUEST,
+  lat,
+  lon
+})
+
+export const getGeocodeSuccess = (geocode) => ({
+  type: GEOCODING_SUCCESS,
+  geocode
+})
+
+export const getGeoCodeError = (error) => ({
+  type: GEOCODING_ERROR,
   error
 })
 

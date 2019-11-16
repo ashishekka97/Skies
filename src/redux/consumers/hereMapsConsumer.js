@@ -1,4 +1,4 @@
-import { hereMapsAPI as API, autoCompleteAPI as API2 } from '../utils/networkManager';
+import { hereMapsAPI as API, autoCompleteAPI as API2, geocodeAPI as API3 } from '../utils/networkManager';
 import { hereMaps as key } from '../../../config/apiKeys';
 import { hereMaps as id } from '../../../config/appIDs';
 
@@ -12,7 +12,7 @@ export function fetchReverseGeocode(lat = '37.8267', lon = '-122.4233') {
     app_code: key
   }, {})
   .then(response => {
-    return response.data.Response.View[0].Result[0]
+    return response.data.Response.View[0].Result[0];
   });
 }
 
@@ -26,5 +26,16 @@ export function fetchAutoComplete(query) {
   }, {})
   .then(response => {
     return response.data.suggestions
+  })
+}
+
+export function fetchGeocode(label = 'India, Nagpur') {
+  return API3.get('/geocode.json', {
+    searchtext: label,
+    app_code: key,
+    app_id: id
+  }, {})
+  .then(response => {
+    return response.data.Response.View[0].Result[0].Location.DisplayPosition;
   })
 }

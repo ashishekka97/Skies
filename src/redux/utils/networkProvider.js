@@ -15,12 +15,19 @@ const autoCompleteProvider = axios.create({
 	timeout: 10000
 })
 
+const geocodingProvider = axios.create({
+	baseURL: 'https://geocoder.api.here.com/6.2',
+	timeout: 10000
+})
+
 darkSkyProvider.all = axios.all;
 hereMapsProvider.all = axios.all;
 autoCompleteProvider.all = axios.all;
+geocodingProvider.all = axios.all;
 
 export {
 	darkSkyProvider,
 	hereMapsProvider,
-	autoCompleteProvider
+	autoCompleteProvider,
+	geocodingProvider
 }
