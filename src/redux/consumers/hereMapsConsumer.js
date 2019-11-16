@@ -1,6 +1,6 @@
 import { hereMapsAPI as API, autoCompleteAPI as API2, geocodeAPI as API3 } from '../utils/networkManager';
-import { hereMaps as key } from '../../../config/apiKeys';
-import { hereMaps as id } from '../../../config/appIDs';
+import { hereMaps as key } from '../../../configs/apiKeys';
+import { hereMaps as id } from '../../../configs/appIDs';
 
 export function fetchReverseGeocode(lat = '37.8267', lon = '-122.4233') {
   return API.get('/reversegeocode.json', {
