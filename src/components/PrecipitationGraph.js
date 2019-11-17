@@ -25,7 +25,7 @@ const PrecipitationGraph = (props) => {
             animate
             interpolation='catmullRom'
             style={{
-              data: { fill: "black", stroke: 'rgba(256, 256, 256, 0.3)', strokeOpaciy: '0.1', fillOpacity: '0.0', }
+              data: { fill: "black", stroke: 'rgb(256, 256, 256)', strokeWidth: '3', strokeOpacity: '.3', fillOpacity: '0.0', }
             }}
             data={data}
           />
@@ -41,6 +41,7 @@ const PrecipitationGraph = (props) => {
               data: { fill: "white" },
               labels: { fontSize: 15, fill: "#fff", padding: 15 }
             }}
+            animate
           />
         </VictoryChart>
       }

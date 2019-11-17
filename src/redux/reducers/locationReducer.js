@@ -13,7 +13,8 @@ import {
   AUTOCOMPLETE_RESET,
 
   SAVE_LOCATION_REQUEST,
-  DELETE_LOCATION_REQUEST
+  DELETE_LOCATION_REQUEST,
+  SET_CURRENT_LOCATION
 } from '../actions/types';
 
 import { geocode, reverseGeocode } from '../initialStates/locationState';
@@ -24,6 +25,9 @@ const initialState = {
   reverseGeocode: reverseGeocode,
   suggestions: [],
   savedLocations: [],
+  currentLocation: {
+    
+  },
   error: null
 }
 
@@ -100,6 +104,11 @@ const locationReducer = (state = initialState, action) => {
     case DELETE_LOCATION_REQUEST: return {
       ...state,
       savedLocations: state.savedLocations.filter(item => item !== state.savedLocations[action.index])
+    }
+
+    case SET_CURRENT_LOCATION: return {
+      ...state,
+      currentLocation: action.location
     }
 
     default: return {

@@ -17,7 +17,8 @@ import {
   AUTOCOMPLETE_RESET,
 
   SAVE_LOCATION_REQUEST,
-  DELETE_LOCATION_REQUEST
+  DELETE_LOCATION_REQUEST,
+  SET_CURRENT_LOCATION
 } from './types';
 
 export const getWeatherData = (lat, lon) => ({
@@ -94,4 +95,9 @@ export const saveLocation = (location) => ({
 export const deleteLocation = (index) => ({
   type: DELETE_LOCATION_REQUEST,
   index
+})
+
+export const setCurrentLocation = (location) => ({
+  type: SET_CURRENT_LOCATION,
+  location
 })

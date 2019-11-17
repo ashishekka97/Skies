@@ -27,7 +27,7 @@ const HourlyForecast = (props) => {
   }
 
   const yDomainForTemperature = daily.data[0] ? [Math.round(daily.data[0].temperatureMin) - 5, Math.round(daily.data[0].temperatureMax) + 7] : null;
-  const yDomainForPrecipitation = daily.data[0] ? [0, 100] : null;
+  const yDomainForPrecipitation = daily.data[0] ? [-2, 100] : null;
   const yDomainForWind = daily.data[0] ? [0, 1] : null;
 
   {
@@ -44,7 +44,7 @@ const HourlyForecast = (props) => {
 
         precipitationData.push({
           x: getTime(hour.time, 'H'),
-          y: hour.precipProbability*100,
+          y: Math.round(hour.precipProbability*100),
           type: hour.percipType,
           time: hour.time
         })

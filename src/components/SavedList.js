@@ -14,6 +14,14 @@ const SavedList = (props) => {
     return (
       <TouchableOpacity
         underlayColor='rgba(255, 255, 255, 0.3)'
+        onPress={() => {
+          onSelect({
+            label: item.item.label,
+            latitude: item.item.latitude,
+            longitude: item.item.longitude,
+            usingGPS: false
+          })
+        }}
       >
         <Text style={styles.resultText}>{item.item.label}</Text>
       </TouchableOpacity>
@@ -25,7 +33,7 @@ const SavedList = (props) => {
       style={styles.resultContainer}
       data={places}
       renderItem={renderItem}
-      keyExtractor={(item, index) => index}
+      keyExtractor={(item, index) => 'location_' + index}
     />
   )
 }
@@ -36,7 +44,7 @@ const styles = StyleSheet.create({
     margin: 10,
     marginTop: 0,
     backgroundColor: 'rgba(0, 0, 0, 0.1)',
-    borderRadius: 12
+    borderRadius: 12,
   },
 
   resultItem: {

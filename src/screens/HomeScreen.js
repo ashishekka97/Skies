@@ -26,11 +26,31 @@ class HomeScreen extends React.Component {
   }
 
   componentDidMount() {
-    getCurrentLocation(this.updateLogic, this.errorLogic)
+    if (this.props.currentLocation && this.props.currentLocation.label !== 'Current Location') {
+      this.setState({
+        isLocating: false,
+        latitude: this.props.currentLocation.latitude,
+        longitude: this.props.currentLocation.longitude
+      })
+      this.props.fetchCity(this.props.currentLocation.latitude, this.props.currentLocation.longitude);
+      this.props.fetchData(this.props.currentLocation.latitude, this.props.currentLocation.longitude);
+    }
+    else getCurrentLocation(this.updateLogic, this.errorLogic)
+  }
+
+  componentDidUpdate() {
+    if (this.props.currentLocation && (this.props.currentLocation.latitude !== this.state.latitude || this.props.currentLocation.longitude !== this.state.longitude)) {
+      this.setState({
+        isLocating: false,
+        latitude: this.props.currentLocation.latitude,
+        longitude: this.props.currentLocation.longitude
+      })
+      this.props.fetchCity(this.props.currentLocation.latitude, this.props.currentLocation.longitude);
+      this.props.fetchData(this.props.currentLocation.latitude, this.props.currentLocation.longitude);
+    }
   }
 
   updateLogic = (position) => {
-    console.log('Yes');
     this.setState({
       isLocating: false,
       latitude: position.coords.latitude,
@@ -93,7 +113,8 @@ const mapStateToProps = (state) => {
   return {
     weather: state.weather.data,
     isLoading: state.weather.isLoading,
-    location: state.location.reverseGeocode
+    location: state.location.reverseGeocode,
+    currentLocation: state.location.currentLocation
   }
 }
 

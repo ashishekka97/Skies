@@ -8,10 +8,11 @@ import {
 } from 'react-native';
 import SearchBar from '../components/SearchBar';
 import { connect } from "react-redux";
-import { getAutoComplete, resetAutoComplete, getGeocode, saveLocation } from '../redux/actions';
+import { getAutoComplete, resetAutoComplete, getGeocode, saveLocation, setCurrentLocation } from '../redux/actions';
 import debounced from '../utils/debounced';
 import SuggestionList from '../components/SuggestionList';
 import SavedList from '../components/SavedList';
+import CurrentLocation from '../components/CurrentLocation';
 
 const DEBOUNCE_MS = 500;
 
@@ -40,6 +41,11 @@ class SearchScreen extends React.Component {
         longitude: this.props.longitude
       })
       this.props.savePlace({
+        label: this.state.label,
+        latitude: this.props.latitude,
+        longitude: this.props.longitude
+      })
+      this.props.setLocation({
         label: this.state.label,
         latitude: this.props.latitude,
         longitude: this.props.longitude
@@ -85,7 +91,8 @@ class SearchScreen extends React.Component {
           <SearchBar onChangeText={this.getSuggestions}/>
         </View>
         <SuggestionList suggestions={this.props.suggestions} onSelect={this.initiateSave}/>
-        <SavedList places={this.props.savedLocations}/>
+        <CurrentLocation onSelect={this.props.setLocation}/>
+        <SavedList places={this.props.savedLocations} onSelect={this.props.setLocation}/>
       </View>
     )
   }
@@ -124,6 +131,10 @@ const mapDispatchToProps = (dispatch) => {
 
     savePlace: (location) => {
       dispatch(saveLocation(location))
+    },
+
+    setLocation: (location) => {
+      dispatch(setCurrentLocation(location))
     }
   }
 }
