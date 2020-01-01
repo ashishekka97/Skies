@@ -1,68 +1,80 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet
-} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { getTime } from '../utils/time'
+import {getTime} from '../utils/time';
 
-const Details = (props) => {
-  const { currently, daily } = props;
-  const details = [ {
+const Details = props => {
+  const {currently, daily} = props;
+  const details = [
+    {
       name: 'Feels Like',
       icon: 'thermostat',
-      data: currently.apparentTemperature
-    }, {
+      data: currently.apparentTemperature,
+    },
+    {
       name: 'Temperature',
       icon: 'thermometer-lines',
-      data: daily.data[0] ? daily.data[0].apparentTemperatureHigh : '-' + " | " + daily.data[0] ? daily.data[0].apparentTemperatureLow : '-',
-    }, {
+      data: daily.data[0]
+        ? daily.data[0].apparentTemperatureHigh
+        : '-' + ' | ' + daily.data[0]
+        ? daily.data[0].apparentTemperatureLow
+        : '-',
+    },
+    {
       name: 'Wind',
       icon: 'weather-windy',
-      data: currently.windSpeed + " | " + currently.windGust + " | " + currently.windBearing,
-    }, {
+      data:
+        currently.windSpeed +
+        ' | ' +
+        currently.windGust +
+        ' | ' +
+        currently.windBearing,
+    },
+    {
       name: 'Pressure',
       icon: 'gauge',
       data: currently.pressure,
-    }, {
+    },
+    {
       name: 'Humidity',
       icon: 'water',
-      data: currently.humidity
-    }, {
+      data: currently.humidity,
+    },
+    {
       name: 'Clouds',
       icon: 'cloud',
-      data: currently.cloudCover
-    }, {
+      data: currently.cloudCover,
+    },
+    {
       name: 'UV Index',
       icon: 'sunglasses',
-      data: currently.uvIndex
-    }, {
+      data: currently.uvIndex,
+    },
+    {
       name: 'Visibility',
       icon: 'weather-fog',
-      data: currently.visibility
-    }, {
+      data: currently.visibility,
+    },
+    {
       name: 'Sunrise',
       icon: 'weather-sunset-up',
       data: daily.data[0] ? getTime(daily.data[0].sunriseTime, 'h:m A') : '-',
-    }, {
+    },
+    {
       name: 'Sunset',
       icon: 'weather-sunset-down',
       data: daily.data[0] ? getTime(daily.data[0].sunsetTime, 'h:m A') : '-',
-    }
+    },
   ];
 
   return (
     <View>
-      <Text style={styles.titleText}>
-        Details
-      </Text>
+      <Text style={styles.titleText}>Details</Text>
 
       <View style={styles.properties}>
-
-        {
-          details.map((detail, idx) => {
-            return <View style={styles.property} key={idx}>
+        {details.map((detail, idx) => {
+          return (
+            <View style={styles.property} key={idx}>
               <View style={styles.inProp}>
                 <Icon name={detail.icon} style={styles.icons} />
                 <View style={styles.propertyText}>
@@ -71,48 +83,47 @@ const Details = (props) => {
                 </View>
               </View>
             </View>
-          })
-        }
-
+          );
+        })}
       </View>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   baseText: {
     fontFamily: 'Cochin',
-    color: '#fff'
+    color: '#fff',
   },
   titleText: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#fff'
+    color: '#fff',
   },
   properties: {
     flex: 1,
     flexDirection: 'row',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
   },
   property: {
     width: '50%',
     height: 50,
-    marginTop: 15
+    marginTop: 15,
   },
   inProp: {
     padding: 5,
     flex: 1,
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   icons: {
     fontSize: 24,
     width: '20%',
     color: '#fff',
     textAlignVertical: 'center',
-    fontWeight: 'normal'
+    fontWeight: 'normal',
   },
   propertyText: {
-    width: '80%'
+    width: '80%',
   },
   propertyTitle: {
     color: '#fff',
@@ -122,7 +133,7 @@ const styles = StyleSheet.create({
   propertyDetail: {
     color: '#fff',
     fontFamily: 'notoserif',
-  }
-})
+  },
+});
 
 export default Details;

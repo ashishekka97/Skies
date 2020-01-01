@@ -1,15 +1,8 @@
 import React from 'react';
-import {
-  View,
-  Text
-} from 'react-native';
+import {View} from 'react-native';
 
-const SettingsScreen = (props) => {
-  return (
-    <View>
-
-    </View>
-  )
-}
+const SettingsScreen = props => {
+  return <View />;
+};
 
 export default SettingsScreen;

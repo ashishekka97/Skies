@@ -1,37 +1,28 @@
 import React from 'react';
-import {
-  View,
-  StyleSheet,
-  Text,
-  TouchableOpacity
-} from 'react-native';
-import { getCurrentLocation } from '../utils/location';
+import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {getCurrentLocation} from '../utils/location';
 // import { connect } from 'react-redux';
 // import { getReverseGeoCode, getWeatherData } from '../redux/actions';
 
-const CurrentLocation = (props) => {
-  const { onSelect } = props;
+const CurrentLocation = props => {
+  const {onSelect} = props;
 
-  const updateLogic = (position) => {
-    console.log('Here')
+  const updateLogic = position => {
+    console.log('Here');
     onSelect({
       label: 'Current Location',
       latitude: position.coords.latitude,
       longitude: position.coords.longitude,
-      usingGPS: true
-    })
-  }
+      usingGPS: true,
+    });
+  };
 
   const showToast = (message, duration = 'SHORT', position = 'BOTTOM') => {
-    ToastAndroid.show(
-      message,
-      ToastAndroid[duration],
-      ToastAndroid[position],
-    );
-  }
+    ToastAndroid.show(message, ToastAndroid[duration], ToastAndroid[position]);
+  };
 
-  const errorLogic = (error) => {
-    switch(error.code) {
+  const errorLogic = error => {
+    switch (error.code) {
       case 1:
         break;
       case 2:
@@ -42,21 +33,20 @@ const CurrentLocation = (props) => {
       default:
         showToast(error.message);
     }
-  }
+  };
 
   return (
     <View style={styles.resultContainer}>
       <TouchableOpacity
-        underlayColor='rgba(255, 255, 255, 0.3)'
+        underlayColor="rgba(255, 255, 255, 0.3)"
         onPress={() => {
           getCurrentLocation(updateLogic, errorLogic);
-        }}
-      >
+        }}>
         <Text style={styles.resultText}>Current Location</Text>
       </TouchableOpacity>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   resultContainer: {
@@ -75,7 +65,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 16,
     padding: 10,
-  }
+  },
 });
 
 export default CurrentLocation;

@@ -4,30 +4,37 @@ import {
   StyleSheet,
   Dimensions,
   View,
-  Text
+  Text,
 } from 'react-native';
 import background from '../utils/image';
 import iconName from '../utils/icons';
 import HomeScreenOptions from '../components/HomeScreenOptions';
 
-const WeatherImage =  (props) => {
-  const { data, reverseGeocode, navigation } = props;
+const WeatherImage = props => {
+  const {data, reverseGeocode, navigation} = props;
 
-  const getBackground = (condition) => {
+  const getBackground = condition => {
     return background[condition];
-  }
+  };
 
-  const getIcon = (condition) => {
-    return iconName[condition]
-  }
+  const getIcon = condition => {
+    return iconName[condition];
+  };
 
   return (
     <ImageBackground
-     source={ data.currently ? getBackground(data.currently.icon) : require('../assets/bg/clear-day.png')}
-     style={styles.image}
-     resizeMode='cover'
-    >
-      <HomeScreenOptions styles={styles.menu} navigation={navigation} condition={data.currently.icon}/>
+      source={
+        data.currently
+          ? getBackground(data.currently.icon)
+          : require('../assets/weather/clear-day.jpg')
+      }
+      style={styles.image}
+      resizeMode="cover">
+      <HomeScreenOptions
+        styles={styles.menu}
+        navigation={navigation}
+        condition={data.currently.icon}
+      />
       <View style={styles.container}>
         <View style={styles.innerContainer}>
           <Text style={styles.tempText}>
@@ -35,23 +42,23 @@ const WeatherImage =  (props) => {
           </Text>
         </View>
 
-        <View style={styles.innerContainer}>          
+        <View style={styles.innerContainer}>
           <Text style={styles.summary}>
-            { reverseGeocode.Location.Address.City }
+            {reverseGeocode.Location.Address.City}
           </Text>
           <Text style={styles.dot}> · </Text>
           <Text style={styles.summary}>{data.currently.summary}</Text>
         </View>
       </View>
     </ImageBackground>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   image: {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height / 2.5,
-    flex: 1
+    flex: 1,
   },
   container: {
     flex: 4,
@@ -62,7 +69,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   innerContainer: {
-    flexDirection: "row",
+    flexDirection: 'row',
     width: Dimensions.get('window').width,
     justifyContent: 'flex-start',
     paddingLeft: 20,
@@ -70,15 +77,15 @@ const styles = StyleSheet.create({
   },
   tempText: {
     fontSize: 24,
-    color: "#fff"
+    color: '#fff',
   },
   subText: {
-    color: "#fff"
+    color: '#fff',
   },
   icons: {
     textAlignVertical: 'center',
     color: '#fff',
-    fontSize: 32
+    fontSize: 32,
   },
   dot: {
     fontSize: 32,
@@ -86,8 +93,8 @@ const styles = StyleSheet.create({
   },
   summary: {
     color: 'white',
-    fontSize: 16
-  }
-})
+    fontSize: 16,
+  },
+});
 
 export default WeatherImage;

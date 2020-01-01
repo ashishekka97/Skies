@@ -2,102 +2,98 @@ import {
   WEATHER_DATA_REQUEST,
   WEATHER_DATA_SUCCESS,
   WEATHER_DATA_ERROR,
-
   REVERSE_GEOCODING_REQUEST,
   REVERSE_GEOCODING_SUCCESS,
   REVERSE_GEOCODING_ERROR,
-
   GEOCODING_REQUEST,
   GEOCODING_SUCCESS,
   GEOCODING_ERROR,
-
   AUTOCOMPLETE_REQUEST,
   AUTOCOMPLETE_SUCCESS,
   AUTOCOMPLETE_ERROR,
   AUTOCOMPLETE_RESET,
-
   SAVE_LOCATION_REQUEST,
   DELETE_LOCATION_REQUEST,
-  SET_CURRENT_LOCATION
+  SET_CURRENT_LOCATION,
 } from './types';
 
 export const getWeatherData = (lat, lon) => ({
   type: WEATHER_DATA_REQUEST,
   lat,
-  lon
+  lon,
 });
 
-export const weatherDataSuccess = (data) => ({
+export const weatherDataSuccess = data => ({
   type: WEATHER_DATA_SUCCESS,
-  data
+  data,
 });
 
-export const weatherDataError = (error) => ({
+export const weatherDataError = error => ({
   type: WEATHER_DATA_ERROR,
-  error
+  error,
 });
 
 export const getReverseGeoCode = (lat, lon) => ({
   type: REVERSE_GEOCODING_REQUEST,
   lat,
-  lon
-})
+  lon,
+});
 
-export const getReverseGeoCodeSuccess = (reverseGeocode) => ({
+export const getReverseGeoCodeSuccess = reverseGeocode => ({
   type: REVERSE_GEOCODING_SUCCESS,
-  reverseGeocode
-})
+  reverseGeocode,
+});
 
-export const getReverseGeoCodeError = (error) => ({
+export const getReverseGeoCodeError = error => ({
   type: REVERSE_GEOCODING_ERROR,
-  error
-})
+  error,
+});
 
-export const getGeocode = (label) => ({
+export const getGeocode = label => ({
   type: GEOCODING_REQUEST,
-  label
-})
+  label,
+});
 
-export const getGeocodeSuccess = (geocode) => ({
+export const getGeocodeSuccess = geocode => ({
   type: GEOCODING_SUCCESS,
-  geocode
-})
+  geocode,
+});
 
-export const getGeoCodeError = (error) => ({
+export const getGeoCodeError = error => ({
   type: GEOCODING_ERROR,
-  error
-})
+  error,
+});
 
-export const getAutoComplete = (query) => ({
+export const getAutoComplete = query => ({
   type: AUTOCOMPLETE_REQUEST,
-  query
-})
+  query,
+});
 
-export const getAutoCompleteSuccess = (suggestions) => ({
+export const getAutoCompleteSuccess = suggestions => ({
   type: AUTOCOMPLETE_SUCCESS,
-  suggestions
-})
+  suggestions,
+});
 
-export const getAutoCompleteError = (error) => ({
+export const getAutoCompleteError = error => ({
   type: AUTOCOMPLETE_ERROR,
-  error
-})
+  error,
+});
 
 export const resetAutoComplete = () => ({
-  type: AUTOCOMPLETE_RESET
-})
+  type: AUTOCOMPLETE_RESET,
+});
 
-export const saveLocation = (location) => ({
+export const saveLocation = location => ({
   type: SAVE_LOCATION_REQUEST,
-  location
-})
+  location,
+});
 
-export const deleteLocation = (index) => ({
+export const deleteLocation = index => ({
   type: DELETE_LOCATION_REQUEST,
-  index
-})
+  index,
+});
 
-export const setCurrentLocation = (location) => ({
+export const setCurrentLocation = location => ({
   type: SET_CURRENT_LOCATION,
-  location
-})
+  location,
+});

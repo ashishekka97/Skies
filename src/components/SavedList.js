@@ -1,32 +1,26 @@
 import React, {useCallback, useState} from 'react';
-import {
-  FlatList,
-  StyleSheet,
-  Text,
-  TouchableOpacity
-} from 'react-native';
+import {FlatList, StyleSheet, Text, TouchableOpacity} from 'react-native';
 
-const SavedList = (props) => {
-  const { places, onSelect } = props;
+const SavedList = props => {
+  const {places, onSelect} = props;
 
-  const renderItem = (item) => {
-    console.log(item)
+  const renderItem = item => {
+    console.log(item);
     return (
       <TouchableOpacity
-        underlayColor='rgba(255, 255, 255, 0.3)'
+        underlayColor="rgba(255, 255, 255, 0.3)"
         onPress={() => {
           onSelect({
             label: item.item.label,
             latitude: item.item.latitude,
             longitude: item.item.longitude,
-            usingGPS: false
-          })
-        }}
-      >
+            usingGPS: false,
+          });
+        }}>
         <Text style={styles.resultText}>{item.item.label}</Text>
       </TouchableOpacity>
-    )
-  }
+    );
+  };
 
   return (
     <FlatList
@@ -35,8 +29,8 @@ const SavedList = (props) => {
       renderItem={renderItem}
       keyExtractor={(item, index) => 'location_' + index}
     />
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   resultContainer: {
@@ -55,7 +49,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 16,
     padding: 10,
-  }
-})
+  },
+});
 
 export default SavedList;
