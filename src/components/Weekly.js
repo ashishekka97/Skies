@@ -1,41 +1,35 @@
 import React from 'react';
-import {
-  View,
-  StyleSheet,
-  Text,
-  Dimensions
-} from 'react-native';
+import {View, StyleSheet, Text, Dimensions} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { getTime } from '../utils/time';
+import {getTime} from '../utils/time';
 import iconName from '../utils/icons';
 
-const Weekly = (props) => {
-  const { header } = props;
+const Weekly = props => {
+  const {header} = props;
 
-  const getIcon = (condition) => {
+  const getIcon = condition => {
     return iconName[condition];
-  }
-  
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.left}>
-        <Text style={styles.mainText}>
-          { getTime(header.time, "dddd") }
-        </Text>
+        <Text style={styles.mainText}>{getTime(header.time, 'dddd')}</Text>
       </View>
       <View style={styles.center}>
         <Text>
-          <Icon name={getIcon(header.icon)} style={styles.icons}/>  
+          <Icon name={getIcon(header.icon)} style={styles.icons} />
         </Text>
       </View>
       <View style={styles.right}>
         <Text style={styles.baseText}>
-          {Math.round(header.temperatureMin)}  ~  {Math.round(header.temperatureMax)}
+          {Math.round(header.temperatureMin)} ~{' '}
+          {Math.round(header.temperatureMax)}
         </Text>
       </View>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -49,37 +43,35 @@ const styles = StyleSheet.create({
 
   baseText: {
     fontFamily: 'Cochin',
-    color: '#fff'
+    color: '#fff',
   },
 
   mainText: {
     fontSize: 16,
-    color: '#fff'
+    color: '#fff',
   },
 
   titleText: {
     fontSize: 20,
-    fontWeight: 'bold', 
-    color: '#fff'
+    fontWeight: 'bold',
+    color: '#fff',
   },
 
   left: {
-    width: Dimensions.get('window').width / 3
+    width: Dimensions.get('window').width / 3,
   },
 
   center: {
-    textAlign: 'right'
+    textAlign: 'right',
   },
 
-  right: {
-
-  },
+  right: {},
 
   icons: {
     fontSize: 24,
     color: '#fff',
-    textAlignVertical: 'center'
+    textAlignVertical: 'center',
   },
-})
+});
 
 export default Weekly;

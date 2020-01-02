@@ -1,83 +1,95 @@
-import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView
-} from 'react-native';
-import { getTime } from '../utils/time';
+import React, {useState} from 'react';
+import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import {getTime} from '../utils/time';
 import iconName from '../utils/icons';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import SegmentedControlTab from "react-native-segmented-control-tab";
+import SegmentedControlTab from 'react-native-segmented-control-tab';
 
 import TemperatureGraph from './TemperatureGraph';
 import WindGraph from './WindGraph';
 import PrecipitationGraph from './PrecipitationGraph';
 
-const HourlyForecast = (props) => {
+const HourlyForecast = props => {
   const [activeIndex, updateActiveIndex] = useState(0);
-  const { hourly, daily } = props;
+  const {hourly, daily} = props;
   const temperatureData = [];
   const precipitationData = [];
   const windData = [];
 
-  const getIcon = (icon) => {
-    return <Icon name={iconName[icon]} style={styles.icons}/>
-  }
+  const getIcon = icon => {
+    return <Icon name={iconName[icon]} style={styles.icons} />;
+  };
 
-  const yDomainForTemperature = daily.data[0] ? [Math.round(daily.data[0].temperatureMin) - 5, Math.round(daily.data[0].temperatureMax) + 7] : null;
-  const yDomainForPrecipitation = daily.data[0] ? [0, 100] : null;
+  const yDomainForTemperature = daily.data[0]
+    ? [
+        Math.round(daily.data[0].temperatureMin) - 10,
+        Math.round(daily.data[0].temperatureMax) + 7,
+      ]
+    : null;
+  const yDomainForPrecipitation = daily.data[0] ? [-2, 100] : null;
   const yDomainForWind = daily.data[0] ? [0, 1] : null;
 
-  {
-    if (hourly.data) {
-      const hours = hourly.data
-      hours.some((hour, idx) => {
-        if(idx > 23) return;
-        temperatureData.push({
-          x: getTime(hour.time, 'H'),
-          y: Math.round(hour.apparentTemperature),
-          icon: hour.icon,
-          time: hour.time
-        })
+  if (hourly.data) {
+    const hours = hourly.data;
+    hours.some((hour, idx) => {
+      if (idx > 23) {
+        return;
+      }
+      temperatureData.push({
+        x: getTime(hour.time, 'H'),
+        y: Math.round(hour.apparentTemperature),
+        icon: hour.icon,
+        time: hour.time,
+      });
 
-        precipitationData.push({
-          x: getTime(hour.time, 'H'),
-          y: hour.precipProbability*100,
-          type: hour.percipType,
-          time: hour.time
-        })
+      precipitationData.push({
+        x: getTime(hour.time, 'H'),
+        y: Math.round(hour.precipProbability * 100),
+        type: hour.percipType,
+        time: hour.time,
+      });
 
-        windData.push({
-          x: getTime(hour.time, 'H'),
-          y: Math.round(hour.windSpeed),
-          bearing: hour.windBearing,
-          time: hour.time
-        })
-      })
+      windData.push({
+        x: getTime(hour.time, 'H'),
+        y: Math.round(hour.windSpeed),
+        bearing: hour.windBearing,
+        time: hour.time,
+      });
+    });
+  }
+
+  const renderGraph = index => {
+    if (index === 0) {
+      return (
+        <TemperatureGraph
+          data={temperatureData}
+          yDomain={yDomainForTemperature}
+        />
+      );
+    } else if (index === 1) {
+      return <WindGraph data={windData} />;
+    } else {
+      return (
+        <PrecipitationGraph
+          data={precipitationData}
+          yDomain={yDomainForPrecipitation}
+        />
+      );
     }
-  }
-
-  const renderGraph = (index) => {
-    if (index == 0) return <TemperatureGraph data={temperatureData} yDomain={yDomainForTemperature}/>
-    else if (index == 1) return <WindGraph data={windData}/>
-    else return <PrecipitationGraph data={precipitationData} yDomain={yDomainForPrecipitation}/>
-  }
+  };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.titleText}>
-        Next 24 hours
-      </Text>
+      <Text style={styles.titleText}>Next 24 hours</Text>
       <View style={styles.summaryContainer}>
-        <Text> { getIcon(hourly.icon) } </Text>
+        <Text> {getIcon(hourly.icon)} </Text>
         <Text style={styles.dot}> · </Text>
-        <Text style={styles.summary}>{ hourly.summary }</Text>
+        <Text style={styles.summary}>{hourly.summary}</Text>
       </View>
 
       <SegmentedControlTab
-        values={["Temperature", "Wind", "Precipitation"]}
+        values={['Temperature', 'Wind', 'Precipitation']}
         selectedIndex={activeIndex}
         onTabPress={updateActiveIndex}
         tabStyle={styles.tab}
@@ -88,15 +100,12 @@ const HourlyForecast = (props) => {
         lastTabStyle={styles.lastTab}
       />
 
-      <ScrollView
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
-      >
+      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
         {renderGraph(activeIndex)}
       </ScrollView>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -104,25 +113,25 @@ const styles = StyleSheet.create({
   },
   baseText: {
     fontFamily: 'Cochin',
-    color: '#fff'
+    color: '#fff',
   },
   titleText: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#fff'
+    color: '#fff',
   },
   summaryContainer: {
     paddingTop: 10,
     alignItems: 'center',
     flexDirection: 'row',
-    paddingBottom: 10
+    paddingBottom: 10,
   },
   icons: {
     fontSize: 24,
     width: '20%',
     color: '#fff',
     textAlignVertical: 'center',
-    fontWeight: 'normal'
+    fontWeight: 'normal',
   },
   dot: {
     fontSize: 32,
@@ -130,7 +139,7 @@ const styles = StyleSheet.create({
   },
   summary: {
     color: 'white',
-    fontSize: 16
+    fontSize: 16,
   },
   tab: {
     backgroundColor: 'rgba(0, 0, 0, 0)',
@@ -140,19 +149,19 @@ const styles = StyleSheet.create({
     borderLeftWidth: 0,
   },
   tabText: {
-    color: '#fff'
+    color: '#fff',
   },
   activeTab: {
     backgroundColor: 'rgba(0, 0, 0, 0)',
     borderBottomColor: '#fff',
-    borderBottomWidth: 2
+    borderBottomWidth: 2,
   },
   firstTab: {
-    borderBottomLeftRadius: 0
+    borderBottomLeftRadius: 0,
   },
   lastTab: {
-    borderBottomRightRadius: 0
-  }
-})
+    borderBottomRightRadius: 0,
+  },
+});
 
 export default HourlyForecast;

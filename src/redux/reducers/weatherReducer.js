@@ -1,13 +1,13 @@
 import {
   WEATHER_DATA_REQUEST,
   WEATHER_DATA_SUCCESS,
-  WEATHER_DATA_ERROR
+  WEATHER_DATA_ERROR,
 } from '../actions/types';
 
 const currently = {
   time: 1572794616,
-  summary: "Clear",
-  icon: "clear-day",
+  summary: 'Clear',
+  icon: 'clear-day',
   nearestStormDistance: 275,
   nearestStormBearing: 143,
   precipIntensity: 0,
@@ -23,17 +23,17 @@ const currently = {
   cloudCover: 0,
   uvIndex: 0,
   visibility: 7.45,
-  ozone: 270.2
-}
+  ozone: 270.2,
+};
 
 const hourly = {
-  summary: "Clear throughout the day.",
-  icon: "clear-day",
+  summary: 'Clear throughout the day.',
+  icon: 'clear-day',
   data: [
     {
       time: 1572793200,
-      summary: "Clear",
-      icon: "clear-day",
+      summary: 'Clear',
+      icon: 'clear-day',
       precipIntensity: 0,
       precipProbability: 0,
       temperature: 58.7,
@@ -47,19 +47,19 @@ const hourly = {
       cloudCover: 0,
       uvIndex: 0,
       visibility: 6.864,
-      ozone: 269.9
-    }
-  ]
-}
+      ozone: 269.9,
+    },
+  ],
+};
 
 const daily = {
-  summary: "No precipitation throughout the week.",
-  icon: "clear-day",
+  summary: 'No precipitation throughout the week.',
+  icon: 'clear-day',
   data: [
     {
       time: 1572764400,
-      summary: "Clear throughout the day.",
-      icon: "clear-day",
+      summary: 'Clear throughout the day.',
+      icon: 'clear-day',
       sunriseTime: 1572791940,
       sunsetTime: 1572829800,
       moonPhase: 0.24,
@@ -67,7 +67,7 @@ const daily = {
       precipIntensityMax: 0.002,
       precipIntensityMaxTime: 1572825420,
       precipProbability: 0.05,
-      precipType: "rain",
+      precipType: 'rain',
       temperatureHigh: 70.15,
       temperatureHighTime: 1572818160,
       temperatureLow: 50.84,
@@ -95,44 +95,48 @@ const daily = {
       apparentTemperatureMin: 55.23,
       apparentTemperatureMinTime: 1572854400,
       apparentTemperatureMax: 69.65,
-      apparentTemperatureMaxTime: 1572818160
-    }
-  ]
-}
+      apparentTemperatureMaxTime: 1572818160,
+    },
+  ],
+};
 
 const initialState = {
   isLoading: true,
   data: {
     currently: currently,
     hourly: hourly,
-    daily: daily
+    daily: daily,
   },
-  error: null
-}
+  error: null,
+};
 
 const weatherReducer = (state = initialState, action) => {
-  switch(action.type) {
-    case WEATHER_DATA_REQUEST: return {
-      ...state,
-      isLoading: true
-    }
+  switch (action.type) {
+    case WEATHER_DATA_REQUEST:
+      return {
+        ...state,
+        isLoading: true,
+      };
 
-    case WEATHER_DATA_SUCCESS: return {
-      ...state,
-      data: action.data,
-      isLoading: false
-    }
+    case WEATHER_DATA_SUCCESS:
+      return {
+        ...state,
+        data: action.data,
+        isLoading: false,
+      };
 
-    case WEATHER_DATA_ERROR: return {
-      ...state,
-      error: action.error,
-      isLoading: false
-    }
+    case WEATHER_DATA_ERROR:
+      return {
+        ...state,
+        error: action.error,
+        isLoading: false,
+      };
 
-    default: return {
-      ...state
-    }
+    default:
+      return {
+        ...state,
+      };
   }
-}
+};
 
 export default weatherReducer;

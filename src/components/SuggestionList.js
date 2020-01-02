@@ -1,27 +1,21 @@
 import React, {useCallback, useState} from 'react';
-import {
-  FlatList,
-  StyleSheet,
-  Text,
-  TouchableOpacity
-} from 'react-native';
+import {FlatList, StyleSheet, Text, TouchableOpacity} from 'react-native';
 
-const SuggestionList = (props) => {
-  const { suggestions, onSelect } = props;
+const SuggestionList = props => {
+  const {suggestions, onSelect} = props;
 
-  const renderItem = (item) => {
+  const renderItem = item => {
     return (
       <TouchableOpacity
-        underlayColor='rgba(255, 255, 255, 0.3)'
+        underlayColor="rgba(255, 255, 255, 0.3)"
         onPress={() => {
           console.log('Pressed');
-          onSelect(item.item.label)
-        }}
-      >
+          onSelect(item.item.label);
+        }}>
         <Text style={styles.resultText}>{item.item.label}</Text>
       </TouchableOpacity>
-    )
-  }
+    );
+  };
 
   return (
     <FlatList
@@ -30,8 +24,8 @@ const SuggestionList = (props) => {
       renderItem={renderItem}
       keyExtractor={item => item.locationId}
     />
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   resultContainer: {
@@ -42,7 +36,7 @@ const styles = StyleSheet.create({
     marginTop: 0,
     backgroundColor: 'rgba(0, 0, 0, 1)',
     borderRadius: 12,
-    zIndex: 10
+    zIndex: 10,
   },
 
   resultItem: {
@@ -53,7 +47,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 16,
     padding: 10,
-  }
-})
+  },
+});
 
 export default SuggestionList;

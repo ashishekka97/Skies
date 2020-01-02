@@ -1,26 +1,22 @@
-import React, { useState } from 'react';
-import {
-  View,
-  StyleSheet,
-  Text
-} from 'react-native';
+import React, {useState} from 'react';
+import {View, StyleSheet, Text} from 'react-native';
 import Accordion from 'react-native-collapsible/Accordion';
 import Weekly from './Weekly';
 import WeeklyDetail from './WeeklyDetail';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import iconName from '.././utils/icons';
 
-const WeeklyForecast = (props) => {
+const WeeklyForecast = props => {
   const [activeSections, updateActiveSections] = useState([]);
-  const { daily } = props;
+  const {daily} = props;
   const details = [];
 
-  const getIcon = (icon) => {
-    return <Icon name={iconName[icon]} style={styles.icons}/>
-  }
+  const getIcon = icon => {
+    return <Icon name={iconName[icon]} style={styles.icons} />;
+  };
 
   if (daily.data) {
-    (daily.data).map(data => {
+    daily.data.map(data => {
       details.push({
         header: {
           time: data.time,
@@ -37,10 +33,10 @@ const WeeklyForecast = (props) => {
           uvIndex: data.uvIndex,
           pressure: data.pressure,
           sunriseTime: data.sunriseTime,
-          sunsetTime: data.sunsetTime
-        }
-      })
-    })
+          sunsetTime: data.sunsetTime,
+        },
+      });
+    });
   } else {
     details.push({
       header: {
@@ -59,34 +55,28 @@ const WeeklyForecast = (props) => {
         pressure: 1024,
         sunriseTime: 1572964860,
         sunsetTime: 1573002480,
-      }
-    })
+      },
+    });
   }
 
   renderHeader = section => {
-    return (
-      <Weekly header={section.header}/>
-    );
+    return <Weekly header={section.header} />;
   };
 
   renderContent = section => {
-    return (
-      <WeeklyDetail content={section.content}/>
-    );
+    return <WeeklyDetail content={section.content} />;
   };
 
   return (
     <View>
-      <Text style={styles.titleText}>
-        This Week
-      </Text>
+      <Text style={styles.titleText}>This Week</Text>
       <View style={styles.summaryContainer}>
-        <Text> { getIcon(daily.icon) } </Text>
+        <Text> {getIcon(daily.icon)} </Text>
         <Text style={styles.dot}> · </Text>
-        <Text style={styles.summary}>{ daily.summary }</Text>
+        <Text style={styles.summary}>{daily.summary}</Text>
       </View>
       <Accordion
-        underlayColor='rgba(0, 0, 0, 0)'
+        underlayColor="rgba(0, 0, 0, 0)"
         sections={details}
         activeSections={activeSections}
         renderHeader={renderHeader}
@@ -94,30 +84,30 @@ const WeeklyForecast = (props) => {
         onChange={updateActiveSections}
       />
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   baseText: {
     fontFamily: 'Cochin',
-    color: '#fff'
+    color: '#fff',
   },
   titleText: {
     fontSize: 20,
-    fontWeight: 'bold', 
-    color: '#fff'
+    fontWeight: 'bold',
+    color: '#fff',
   },
   summaryContainer: {
     paddingTop: 10,
     alignItems: 'center',
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   icons: {
     fontSize: 24,
     width: '20%',
     color: '#fff',
     textAlignVertical: 'center',
-    fontWeight: 'normal'
+    fontWeight: 'normal',
   },
   dot: {
     fontSize: 32,
@@ -125,8 +115,8 @@ const styles = StyleSheet.create({
   },
   summary: {
     color: 'white',
-    fontSize: 16
-  }
-})
+    fontSize: 16,
+  },
+});
 
 export default WeeklyForecast;

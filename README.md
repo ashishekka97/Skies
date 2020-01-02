@@ -6,12 +6,18 @@
 `npm install`
 ##### Add API Key File
 ```
-mkdir config
-cd config
+mkdir configs
+cd configs
 touch apiKey.js
+touch appIDs.js
 ```
-##### Edit API Key File
-`export const apiKey = 'YOUR_API_KEY';`
+##### Edit API Keys File
+```
+export const darkSky = 'YOUR_DARK_SKY_API_KEY';
+export const hereMaps = 'YOUR_HERE_MAPS_API_CODE';
+```
+##### Edit APP IDs File
+`export const hereMaps = 'YOUR_HERE_MAPS_APP_ID';`
 ##### Run
 `react native run-android`
 
@@ -21,12 +27,18 @@ touch apiKey.js
 `npm install && cd ios && pod install && cd ../`
 ##### Add API Key File
 ```
-mkdir config
-cd config
+mkdir configs
+cd configs
 touch apiKey.js
+touch appIDs.js
 ```
-##### Edit API Key File
-`export const apiKey = 'YOUR_API_KEY';`
+##### Edit API Keys File
+```
+export const darkSky = 'YOUR_DARK_SKY_API_KEY';
+export const hereMaps = 'YOUR_HERE_MAPS_API_CODE';
+```
+##### Edit APP IDs File
+`export const hereMaps = 'YOUR_HERE_MAPS_APP_ID';`
 ##### Run
 `react native run-ios`
 
