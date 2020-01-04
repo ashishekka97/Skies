@@ -2,6 +2,7 @@ import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import HomeScreen from '../screens/HomeScreen';
 import SearchScreen from '../screens/SearchScreen';
+import SettingsScreen from '../screens/SettingsScreen';
 
 const AppNavigator = createStackNavigator(
   {
@@ -10,6 +11,9 @@ const AppNavigator = createStackNavigator(
     },
     Search: {
       screen: SearchScreen,
+    },
+    Settings: {
+      screen: SettingsScreen,
     },
   },
   {

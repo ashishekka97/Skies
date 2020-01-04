@@ -7,18 +7,14 @@ import {
   Text,
 } from 'react-native';
 import background from '../utils/image';
-import iconName from '../utils/icons';
+import {localizeTemp} from '../utils/units';
 import HomeScreenOptions from '../components/HomeScreenOptions';
 
 const WeatherImage = props => {
-  const {data, reverseGeocode, navigation} = props;
+  const {data, reverseGeocode, navigation, settings} = props;
 
   const getBackground = condition => {
     return background[condition];
-  };
-
-  const getIcon = condition => {
-    return iconName[condition];
   };
 
   return (
@@ -38,7 +34,7 @@ const WeatherImage = props => {
       <View style={styles.container}>
         <View style={styles.innerContainer}>
           <Text style={styles.tempText}>
-            {data.currently.apparentTemperature}
+            {localizeTemp(data.currently.apparentTemperature, settings[0])}
           </Text>
         </View>
 

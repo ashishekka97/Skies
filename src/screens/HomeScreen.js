@@ -8,13 +8,6 @@ import Loader from '../components/Loader';
 import {getCurrentLocation} from '../utils/location';
 
 class HomeScreen extends React.Component {
-  // static navigationOptions = ({navigation}) => {
-  //   //console.log(navigation)
-  //   return {
-  //     headerRight: () => <HomeScreenHeaderRight navigation={navigation} accent={this.props.weather.icon}/>
-  //   }
-  // }
-
   state = {
     isLocating: true,
     latitude: '',
@@ -95,7 +88,7 @@ class HomeScreen extends React.Component {
   };
 
   render() {
-    const {weather, isLoading, location} = this.props;
+    const {weather, isLoading, location, settings} = this.props;
     return (
       <>
         {this.state.isLocating ? (
@@ -119,7 +112,7 @@ class HomeScreen extends React.Component {
               reverseGeocode={location}
               {...this.props}
             />
-            <BottomWrapper data={weather} />
+            <BottomWrapper data={weather} settings={settings} />
           </ScrollView>
         )}
         {this.props.weather.error && this.showToast(this.props.weather.error)}
@@ -134,6 +127,7 @@ const mapStateToProps = state => {
     isLoading: state.weather.isLoading,
     location: state.location.reverseGeocode,
     currentLocation: state.location.currentLocation,
+    settings: state.settings,
   };
 };
 

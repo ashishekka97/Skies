@@ -8,7 +8,7 @@ import WeeklyForecast from './WeeklyForecast';
 import color from '../utils/accent';
 
 const BottomWrapper = props => {
-  const {data} = props;
+  const {data, settings} = props;
 
   const getBackground = condition => {
     return color[condition];
@@ -22,9 +22,17 @@ const BottomWrapper = props => {
           : '#297285',
       }}>
       <View style={styles.content}>
-        <Details currently={data.currently} daily={data.daily} />
-        <HourlyForecast daily={data.daily} hourly={data.hourly} />
-        <WeeklyForecast daily={data.daily} />
+        <Details
+          currently={data.currently}
+          daily={data.daily}
+          settings={settings}
+        />
+        <HourlyForecast
+          daily={data.daily}
+          hourly={data.hourly}
+          settings={settings}
+        />
+        <WeeklyForecast daily={data.daily} settings={settings} />
       </View>
     </View>
   );

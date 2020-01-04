@@ -8,7 +8,7 @@ import iconName from '.././utils/icons';
 
 const WeeklyForecast = props => {
   const [activeSections, updateActiveSections] = useState([]);
-  const {daily} = props;
+  const {daily, settings} = props;
   const details = [];
 
   const getIcon = icon => {
@@ -59,12 +59,12 @@ const WeeklyForecast = props => {
     });
   }
 
-  renderHeader = section => {
-    return <Weekly header={section.header} />;
+  const renderHeader = section => {
+    return <Weekly header={section.header} settings={settings} />;
   };
 
-  renderContent = section => {
-    return <WeeklyDetail content={section.content} />;
+  const renderContent = section => {
+    return <WeeklyDetail content={section.content} settings={settings} />;
   };
 
   return (
