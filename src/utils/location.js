@@ -31,6 +31,7 @@ export const getCurrentLocation = async (success, error) => {
     PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION,
   );
   if (hasLocationPermission) {
+    console.log(hasLocationPermission);
     Geolocation.getCurrentPosition(success, error);
   } else {
     console.log(hasLocationPermission);

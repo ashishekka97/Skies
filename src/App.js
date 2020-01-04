@@ -1,20 +1,25 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet, StatusBar} from 'react-native';
+import {Provider} from 'react-redux';
+import {PersistGate} from 'redux-persist/integration/react';
+
 import Navigation from './navigation';
 import configureStore from './redux/store/configureStore';
 import rootSaga from './redux/sagas';
-import {Provider} from 'react-redux';
 
-const store = configureStore();
-store.runSaga(rootSaga);
+const storage = configureStore();
+storage.runSaga(rootSaga);
+let persistor = storage.persistor(storage.store);
 
 const App = () => {
   return (
-    <Provider store={store}>
-      <StatusBar translucent backgroundColor="transparent" />
-      <SafeAreaView style={styles.container}>
-        <Navigation />
-      </SafeAreaView>
+    <Provider store={storage.store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <StatusBar translucent backgroundColor="transparent" />
+        <SafeAreaView style={styles.container}>
+          <Navigation />
+        </SafeAreaView>
+      </PersistGate>
     </Provider>
   );
 };
