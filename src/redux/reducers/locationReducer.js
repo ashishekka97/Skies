@@ -104,6 +104,7 @@ const locationReducer = (state = initialState, action) => {
       return {
         ...state,
         savedLocations: [...state.savedLocations, action.location],
+        error: null,
       };
 
     case DELETE_LOCATION_REQUEST:
