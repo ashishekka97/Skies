@@ -122,10 +122,7 @@ const locationReducer = (state = initialState, action) => {
       };
 
     default:
-      return {
-        ...state,
-        error: null,
-      };
+      return state;
   }
 };
 
