@@ -3,9 +3,10 @@ import {View, StyleSheet, Text, Dimensions} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {getTime} from '../utils/time';
 import iconName from '../utils/icons';
+import {localizeTemp} from '../utils/units';
 
 const Weekly = props => {
-  const {header} = props;
+  const {header, settings} = props;
 
   const getIcon = condition => {
     return iconName[condition];
@@ -23,8 +24,9 @@ const Weekly = props => {
       </View>
       <View style={styles.right}>
         <Text style={styles.baseText}>
-          {Math.round(header.temperatureMin)} ~{' '}
-          {Math.round(header.temperatureMax)}
+          {localizeTemp(header.temperatureMin, settings[0]) +
+            ' - ' +
+            localizeTemp(header.temperatureMax, settings[0])}
         </Text>
       </View>
     </View>

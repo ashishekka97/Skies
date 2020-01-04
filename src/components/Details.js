@@ -2,48 +2,52 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {getTime} from '../utils/time';
+import {
+  localizeTemp,
+  localizeSpeed,
+  localizePressure,
+  localizeTime,
+} from '../utils/units';
 
 const Details = props => {
-  const {currently, daily} = props;
+  const {currently, daily, settings} = props;
   const details = [
     {
       name: 'Feels Like',
       icon: 'thermostat',
-      data: currently.apparentTemperature,
+      data: localizeTemp(currently.apparentTemperature, settings[0]),
     },
     {
       name: 'Temperature',
       icon: 'thermometer-lines',
       data: daily.data[0]
-        ? daily.data[0].apparentTemperatureHigh
-        : '-' + ' | ' + daily.data[0]
-        ? daily.data[0].apparentTemperatureLow
-        : '-',
+        ? localizeTemp(daily.data[0].apparentTemperatureHigh, settings[0]) +
+          ' | ' +
+          localizeTemp(daily.data[0].apparentTemperatureLow, settings[0])
+        : '-' + ' | ' + '-',
     },
     {
       name: 'Wind',
       icon: 'weather-windy',
       data:
-        currently.windSpeed +
+        localizeSpeed(currently.windSpeed, settings[1]) +
         ' | ' +
-        currently.windGust +
-        ' | ' +
-        currently.windBearing,
+        localizeSpeed(currently.windGust, settings[1]),
     },
     {
       name: 'Pressure',
       icon: 'gauge',
-      data: currently.pressure,
+      data: localizePressure(currently.pressure, settings[2]),
     },
     {
       name: 'Humidity',
       icon: 'water',
-      data: currently.humidity,
+      data: currently.humidity * 100 + '%',
     },
     {
       name: 'Clouds',
       icon: 'cloud',
-      data: currently.cloudCover,
+      data: currently.cloudCover * 100 + '%',
     },
     {
       name: 'UV Index',
@@ -58,12 +62,16 @@ const Details = props => {
     {
       name: 'Sunrise',
       icon: 'weather-sunset-up',
-      data: daily.data[0] ? getTime(daily.data[0].sunriseTime, 'h:m A') : '-',
+      data: daily.data[0]
+        ? getTime(daily.data[0].sunriseTime, localizeTime(settings[3]))
+        : '-',
     },
     {
       name: 'Sunset',
       icon: 'weather-sunset-down',
-      data: daily.data[0] ? getTime(daily.data[0].sunsetTime, 'h:m A') : '-',
+      data: daily.data[0]
+        ? getTime(daily.data[0].sunsetTime, localizeTime(settings[3]))
+        : '-',
     },
   ];
 

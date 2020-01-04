@@ -8,32 +8,18 @@ const HomeScreenOptions = props => {
   const {navigation, condition} = props;
   const launchSearch = () => {
     navigation.navigate('Search', {
-      color: getAccent(condition),
+      color: getAccent(),
     });
   };
 
-  const getAccent = condition => {
-    return accent[condition];
+  const launchSettings = () => {
+    navigation.navigate('Settings', {
+      color: getAccent(),
+    });
   };
 
-  const launchSettings = () => {
-    Alert.alert(
-      'Clicked on settings',
-      'You clicked on settings',
-      [
-        {
-          text: 'Ask me later',
-          onPress: () => console.log('Ask me later pressed'),
-        },
-        {
-          text: 'Cancel',
-          onPress: () => console.log('Cancel Pressed'),
-          style: 'cancel',
-        },
-        {text: 'OK', onPress: () => console.log('OK Pressed')},
-      ],
-      {cancelable: false},
-    );
+  const getAccent = () => {
+    return accent[condition];
   };
 
   return (

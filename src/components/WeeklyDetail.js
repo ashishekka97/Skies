@@ -2,39 +2,40 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {getTime} from '../utils/time';
+import {localizeSpeed, localizePressure, localizeTime} from '../utils/units';
 
 const WeeklyDetail = props => {
-  const {content} = props;
+  const {content, settings} = props;
   const details = [
     {
       name: 'Wind',
       icon: 'weather-windy',
-      data: content.windSpeed,
+      data: localizeSpeed(content.windSpeed, settings[1]),
     },
     {
       name: 'Pressure',
       icon: 'gauge',
-      data: content.pressure,
+      data: localizePressure(content.pressure, settings[2]),
     },
     {
       name: 'Humidity',
       icon: 'water',
-      data: content.humidity,
+      data: content.humidity * 100 + '%',
     },
     {
       name: 'Clouds',
       icon: 'cloud',
-      data: content.cloudCover,
+      data: content.cloudCover * 100 + '%',
     },
     {
       name: 'Sunrise',
       icon: 'weather-sunset-up',
-      data: getTime(content.sunriseTime, 'h:m a'),
+      data: getTime(content.sunriseTime, localizeTime(settings[3])),
     },
     {
       name: 'Sunset',
       icon: 'weather-sunset-down',
-      data: getTime(content.sunsetTime, 'h:m a'),
+      data: getTime(content.sunsetTime, localizeTime(settings[3])),
     },
   ];
   return (

@@ -15,6 +15,7 @@ import {
   SAVE_LOCATION_REQUEST,
   DELETE_LOCATION_REQUEST,
   SET_CURRENT_LOCATION,
+  SET_PREFERENCE,
 } from './types';
 
 export const getWeatherData = (lat, lon) => ({
@@ -96,4 +97,10 @@ export const deleteLocation = index => ({
 export const setCurrentLocation = location => ({
   type: SET_CURRENT_LOCATION,
   location,
+});
+
+export const setPreference = (preferenceId, optionIndex) => ({
+  type: SET_PREFERENCE,
+  preferenceId,
+  optionIndex,
 });

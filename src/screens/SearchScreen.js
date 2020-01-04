@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, FlatList, Text, Dimensions} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import SearchBar from '../components/SearchBar';
 import {connect} from 'react-redux';
 import {
@@ -80,14 +80,11 @@ class SearchScreen extends React.Component {
 
   render() {
     const {navigation} = this.props;
+    const dynamicBackground = {
+      backgroundColor: navigation.getParam('color', '#56BCC8'),
+    };
     return (
-      <View
-        style={{
-          backgroundColor: navigation.getParam('color', '#56BCC8'),
-          flex: 1,
-          height: 100,
-          alignContent: 'flex-start',
-        }}>
+      <View style={[styles.background, dynamicBackground]}>
         <View style={styles.container}>
           <SearchBar onChangeText={this.getSuggestions} />
         </View>
@@ -105,6 +102,12 @@ class SearchScreen extends React.Component {
   }
 }
 const styles = StyleSheet.create({
+  background: {
+    flex: 1,
+    height: 100,
+    alignContent: 'flex-start',
+  },
+
   container: {
     margin: 10,
     paddingTop: 60,
