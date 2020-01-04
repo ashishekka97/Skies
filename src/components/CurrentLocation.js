@@ -1,5 +1,11 @@
 import React from 'react';
-import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  ToastAndroid,
+} from 'react-native';
 import {getCurrentLocation} from '../utils/location';
 // import { connect } from 'react-redux';
 // import { getReverseGeoCode, getWeatherData } from '../redux/actions';
