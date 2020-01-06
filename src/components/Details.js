@@ -7,6 +7,7 @@ import {
   localizeSpeed,
   localizePressure,
   localizeTime,
+  localizeDistance,
 } from '../utils/units';
 
 const Details = props => {
@@ -57,7 +58,7 @@ const Details = props => {
     {
       name: 'Visibility',
       icon: 'weather-fog',
-      data: currently.visibility,
+      data: localizeDistance(currently.visibility, settings[4]),
     },
     {
       name: 'Sunrise',
