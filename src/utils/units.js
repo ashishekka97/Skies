@@ -70,6 +70,29 @@ export const localizePressure = (pressure, unit) => {
   }
 };
 
+export const localizeDistance = (distance, unit) => {
+  switch (unit) {
+    case 1:
+      return (
+        Math.round(
+          convert(distance)
+            .from('mi')
+            .to('km'),
+        ) + ' km'
+      );
+    case 2:
+      return (
+        Math.round(
+          convert(distance)
+            .from('mi')
+            .to('m'),
+        ) + ' m'
+      );
+    default:
+      return Math.round(distance) + ' mi';
+  }
+};
+
 export const localizeTime = unit => {
   if (unit === 1) {
     return 'h:m A';

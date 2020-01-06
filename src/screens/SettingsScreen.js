@@ -22,14 +22,14 @@ class SettingsScreen extends React.Component {
         icon: 'thermometer-lines',
         id_str: 1,
         setting: 'Temperature',
-        options: ['Celsius', 'Farenheit', 'Kelvin'],
+        options: ['Farenheit', 'Celsius', 'Kelvin'],
         selected: this.props.settings[0],
       },
       {
         icon: 'weather-windy',
         id_str: 2,
         setting: 'Wind',
-        options: ['km/h', 'm/s', 'mph'],
+        options: ['m/s', 'km/h', 'mph'],
         selected: this.props.settings[1],
       },
       {
@@ -45,6 +45,13 @@ class SettingsScreen extends React.Component {
         setting: 'Hours',
         options: ['24h', '12h'],
         selected: this.props.settings[3],
+      },
+      {
+        icon: 'ruler',
+        id_str: 5,
+        setting: 'Distance',
+        options: ['Miles', 'Kilometres', 'Metres'],
+        selected: this.props.settings[4],
       },
     ];
     return (

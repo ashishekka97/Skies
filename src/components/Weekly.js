@@ -25,7 +25,7 @@ const Weekly = props => {
       <View style={styles.right}>
         <Text style={styles.baseText}>
           {localizeTemp(header.temperatureMin, settings[0]) +
-            ' - ' +
+            ' | ' +
             localizeTemp(header.temperatureMax, settings[0])}
         </Text>
       </View>
