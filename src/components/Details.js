@@ -43,12 +43,12 @@ const Details = props => {
     {
       name: 'Humidity',
       icon: 'water',
-      data: currently.humidity * 100 + '%',
+      data: Math.round(currently.humidity) * 100 + '%',
     },
     {
       name: 'Clouds',
       icon: 'cloud',
-      data: currently.cloudCover * 100 + '%',
+      data: Math.round(currently.cloudCover) * 100 + '%',
     },
     {
       name: 'UV Index',
