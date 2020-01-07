@@ -20,12 +20,12 @@ const WeeklyDetail = props => {
     {
       name: 'Humidity',
       icon: 'water',
-      data: content.humidity * 100 + '%',
+      data: Math.round(content.humidity) * 100 + '%',
     },
     {
       name: 'Clouds',
       icon: 'cloud',
-      data: content.cloudCover * 100 + '%',
+      data: Math.round(content.cloudCover) * 100 + '%',
     },
     {
       name: 'Sunrise',
