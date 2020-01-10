@@ -42,7 +42,7 @@ const WindGraph = props => {
 
           <VictoryScatter
             data={data}
-            labels={({datum}) =>  String(Math.round(datum.y)}
+            labels={({datum}) =>  String(Math.round(datum.y))}
             size={5}
             style={{
               parent: {
@@ -52,7 +52,6 @@ const WindGraph = props => {
               labels: {fontSize: 15, fill: '#fff', padding: 15},
             }}
             dataComponent={<WindPoint />}
-            animate
           />
         </VictoryChart>
       )}
