@@ -51,7 +51,6 @@ const TemperatureGraph = props => {
               labels: {fontSize: 15, fill: '#fff', padding: 15},
             }}
             dataComponent={<DataPoint />}
-            animate
           />
         </VictoryChart>
       )}

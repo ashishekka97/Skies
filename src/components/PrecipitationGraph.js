@@ -40,7 +40,7 @@ const PrecipitationGraph = props => {
 
           <VictoryScatter
             data={data}
-            labels={({datum}) => String(Math.round(datum.y)}
+            labels={({datum}) => String(Math.round(datum.y))}
             size={5}
             style={{
               parent: {
@@ -49,7 +49,6 @@ const PrecipitationGraph = props => {
               data: {fill: 'white'},
               labels: {fontSize: 15, fill: '#fff', padding: 15},
             }}
-            animate
           />
         </VictoryChart>
       )}
