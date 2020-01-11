@@ -6,14 +6,14 @@ import iconName from '../utils/icons';
 import {localizeTemp} from '../utils/units';
 
 const Weekly = props => {
-  const {header, settings} = props;
+  const {header, settings, style} = props;
 
   const getIcon = condition => {
     return iconName[condition];
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       <View style={styles.left}>
         <Text style={styles.mainText}>{getTime(header.time, 'dddd')}</Text>
       </View>
@@ -35,6 +35,7 @@ const Weekly = props => {
 
 const styles = StyleSheet.create({
   container: {
+    padding: 5,
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',

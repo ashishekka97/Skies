@@ -10,6 +10,7 @@ import DataPoint from './DataPoint';
 
 const TemperatureGraph = props => {
   const {data, yDomain} = props;
+  //console.log(data);
   return (
     <>
       {data.length < 2 ? null : (
@@ -20,6 +21,7 @@ const TemperatureGraph = props => {
           domain={yDomain ? {y: yDomain} : null}>
           <VictoryAxis
             crossAxis
+            offsetY={50}
             style={{
               axis: {stroke: 'none'},
               tickLabels: {fill: 'white', fontFamily: 'Dosis-Regular'},

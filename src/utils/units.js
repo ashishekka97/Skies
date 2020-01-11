@@ -16,7 +16,7 @@ export const localizeTemp = (temp, unit) => {
           convert(temp)
             .from('F')
             .to('K'),
-        ) + '°F'
+        ) + '°K'
       );
     default:
       return Math.round(temp) + '°F';

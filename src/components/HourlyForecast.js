@@ -85,6 +85,9 @@ const HourlyForecast = props => {
     }
   };
 
+  const tempUnit = settings[0] === 1 ? '°C' : settings[0] === 2 ? '°K' : '°F';
+  const speedUnit =
+    settings[1] === 1 ? 'km/h' : settings[1] === 2 ? 'm/h' : 'm/s';
   return (
     <View style={styles.container}>
       <Text style={styles.titleText}>Next 24 hours</Text>
@@ -95,7 +98,11 @@ const HourlyForecast = props => {
       </View>
 
       <SegmentedControlTab
-        values={['Temperature', 'Wind', 'Precipitation']}
+        values={[
+          'Temperature · ' + tempUnit,
+          'Wind · ' + speedUnit,
+          'Precipitation · %',
+        ]}
         selectedIndex={activeIndex}
         onTabPress={updateActiveIndex}
         tabStyle={styles.tab}

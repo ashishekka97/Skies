@@ -59,8 +59,14 @@ const WeeklyForecast = props => {
     });
   }
 
-  const renderHeader = section => {
-    return <Weekly header={section.header} settings={settings} />;
+  const renderHeader = (section, index, isActive, sections) => {
+    return (
+      <Weekly
+        header={section.header}
+        settings={settings}
+        style={isActive ? styles.expanded : styles.collapsed}
+      />
+    );
   };
 
   const renderContent = section => {
@@ -76,7 +82,7 @@ const WeeklyForecast = props => {
         <Text style={styles.summary}>{daily.summary}</Text>
       </View>
       <Accordion
-        underlayColor="rgba(0, 0, 0, 0)"
+        underlayColor="rgba(0, 0, 0, 0.0)"
         sections={details}
         activeSections={activeSections}
         renderHeader={renderHeader}
@@ -118,6 +124,13 @@ const styles = StyleSheet.create({
     fontFamily: 'Dosis-Regular',
     color: 'white',
     fontSize: 16,
+  },
+  expanded: {
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    borderRadius: 5,
+  },
+  collapsed: {
+    backgroundColor: 'rgba(0, 0, 0, 0)',
   },
 });
 

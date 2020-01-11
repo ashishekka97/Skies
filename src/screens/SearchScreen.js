@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  console.log(state);
+  // console.log(state);
   return {
     suggestions: state.location.suggestions,
     latitude: state.location.geocode.Latitude,
