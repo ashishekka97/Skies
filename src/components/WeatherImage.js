@@ -74,6 +74,7 @@ const styles = StyleSheet.create({
   tempText: {
     fontSize: 24,
     color: '#fff',
+    fontFamily: 'Dosis-SemiBold',
   },
   subText: {
     color: '#fff',
@@ -86,10 +87,12 @@ const styles = StyleSheet.create({
   dot: {
     fontSize: 32,
     color: 'white',
+    fontFamily: 'Dosis-Regular',
   },
   summary: {
     color: 'white',
     fontSize: 16,
+    fontFamily: 'Dosis-Regular',
   },
 });
 

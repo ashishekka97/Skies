@@ -23,16 +23,16 @@ const Details = props => {
       icon: 'thermometer-lines',
       data: daily.data[0]
         ? localizeTemp(daily.data[0].apparentTemperatureHigh, settings[0]) +
-          ' | ' +
+          ' · ' +
           localizeTemp(daily.data[0].apparentTemperatureLow, settings[0])
-        : '-' + ' | ' + '-',
+        : '-' + ' · ' + '-',
     },
     {
       name: 'Wind',
       icon: 'weather-windy',
       data:
         localizeSpeed(currently.windSpeed, settings[1]) +
-        ' | ' +
+        ' · ' +
         localizeSpeed(currently.windGust, settings[1]),
     },
     {
@@ -43,12 +43,12 @@ const Details = props => {
     {
       name: 'Humidity',
       icon: 'water',
-      data: Math.round(currently.humidity) * 100 + '%',
+      data: Math.round(currently.humidity * 100) + '%',
     },
     {
       name: 'Clouds',
       icon: 'cloud',
-      data: Math.round(currently.cloudCover) * 100 + '%',
+      data: Math.round(currently.cloudCover * 100) + '%',
     },
     {
       name: 'UV Index',
@@ -101,20 +101,22 @@ const Details = props => {
 
 const styles = StyleSheet.create({
   baseText: {
-    fontFamily: 'Cochin',
+    fontFamily: 'Dosis-Regular',
     color: '#fff',
   },
   titleText: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontFamily: 'Dosis-Bold',
     color: '#fff',
   },
   properties: {
+    fontFamily: 'Dosis-Regular',
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
   },
   property: {
+    fontFamily: 'Dosis-Regular',
     width: '50%',
     height: 50,
     marginTop: 15,
@@ -132,16 +134,16 @@ const styles = StyleSheet.create({
     fontWeight: 'normal',
   },
   propertyText: {
+    fontFamily: 'Dosis-Regular',
     width: '80%',
   },
   propertyTitle: {
+    fontFamily: 'Dosis-Bold',
     color: '#fff',
-    fontWeight: 'bold',
-    fontFamily: 'notoserif',
   },
   propertyDetail: {
+    fontFamily: 'Dosis-Regular',
     color: '#fff',
-    fontFamily: 'notoserif',
   },
 });
 

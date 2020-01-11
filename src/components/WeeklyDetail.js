@@ -20,12 +20,12 @@ const WeeklyDetail = props => {
     {
       name: 'Humidity',
       icon: 'water',
-      data: Math.round(content.humidity) * 100 + '%',
+      data: Math.round(content.humidity * 100) + '%',
     },
     {
       name: 'Clouds',
       icon: 'cloud',
-      data: Math.round(content.cloudCover) * 100 + '%',
+      data: Math.round(content.cloudCover * 100) + '%',
     },
     {
       name: 'Sunrise',
@@ -74,6 +74,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   property: {
+    fontFamily: 'Dosis-Regular',
     width: '50%',
     height: 50,
     marginTop: 15,
@@ -95,23 +96,25 @@ const styles = StyleSheet.create({
   },
   propertyTitle: {
     color: '#fff',
-    fontWeight: 'bold',
-    fontFamily: 'notoserif',
+    fontFamily: 'Dosis-Bold',
   },
   propertyDetail: {
     color: '#fff',
-    fontFamily: 'notoserif',
+    fontFamily: 'Dosis-Regular',
   },
   summaryContainer: {
     paddingTop: 10,
+    fontFamily: 'Dosis-Regular',
     alignItems: 'center',
     flexDirection: 'row',
   },
   dot: {
+    fontFamily: 'Dosis-Regular',
     fontSize: 32,
     color: 'white',
   },
   summary: {
+    fontFamily: 'Dosis-Regular',
     color: 'white',
     fontSize: 16,
   },
