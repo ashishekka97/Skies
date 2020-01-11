@@ -5,7 +5,7 @@ const SavedList = props => {
   const {places, onSelect} = props;
 
   const renderItem = item => {
-    console.log(item);
+    //console.log(item);
     return (
       <TouchableOpacity
         underlayColor="rgba(255, 255, 255, 0.3)"
@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
   },
 
   resultText: {
+    fontFamily: 'Dosis-Regular',
     color: 'white',
     fontSize: 16,
     padding: 10,

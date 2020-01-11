@@ -32,7 +32,11 @@ const BottomWrapper = props => {
           hourly={data.hourly}
           settings={settings}
         />
-        <WeeklyForecast daily={data.daily} settings={settings} />
+        <WeeklyForecast
+          daily={data.daily}
+          settings={settings}
+          currently={data.currently}
+        />
       </View>
     </View>
   );

@@ -68,6 +68,7 @@ const styles = StyleSheet.create({
   },
 
   resultText: {
+    fontFamily: 'Dosis-Regular',
     color: 'white',
     fontSize: 16,
     padding: 10,

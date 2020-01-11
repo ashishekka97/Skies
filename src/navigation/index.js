@@ -27,7 +27,7 @@ const AppNavigator = createStackNavigator(
       },
       headerTintColor: '#fff',
       headerTitleStyle: {
-        fontWeight: 'bold',
+        fontFamily: 'Dosis-Bold',
       },
     },
   },

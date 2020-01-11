@@ -16,6 +16,7 @@ const SearchBar = props => {
 
 const styles = StyleSheet.create({
   input: {
+    fontFamily: 'Dosis-Regular',
     borderRadius: 10,
     color: 'white',
     backgroundColor: 'rgba(0, 0, 0, 0.1)',

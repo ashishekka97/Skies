@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, View, StyleSheet, Picker} from 'react-native';
+import {FlatList, View, StyleSheet, Picker, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 class Setting extends React.PureComponent {
@@ -16,15 +16,23 @@ class Setting extends React.PureComponent {
     return (
       <View style={styles.settingItem}>
         <Icon name={this.props.setting.icon} style={styles.icons} />
-        <View style={styles.settingText}>
+        <Text style={styles.settingText}>{this.props.setting.setting}</Text>
+        <View style={styles.pickerStyle}>
           <Picker
+            mode="dropdown"
+            prompt={this.props.setting.setting}
             style={styles.setting}
             selectedValue={
               this.props.setting.options[this.props.setting.selected]
             }
             onValueChange={this._onPress}>
             {this.props.setting.options.map(option => (
-              <Picker.Item label={option} value={option} key={option} />
+              <Picker.Item
+                label={option}
+                itemStyle={styles.pickerItem}
+                value={option}
+                key={option}
+              />
             ))}
           </Picker>
           {/* <Text style={styles.settingInfo}>
@@ -54,7 +62,7 @@ class SettingList extends React.Component {
   );
 
   render() {
-    console.log(this.props.settings);
+    //console.log(this.props.settings);
     return (
       <FlatList
         data={this.props.settings}
@@ -75,15 +83,28 @@ const styles = StyleSheet.create({
   },
 
   settingText: {
-    width: '90%',
+    fontFamily: 'Dosis-SemiBold',
+    fontSize: 18,
+    color: 'white',
+    width: '30%',
     paddingLeft: '5%',
+    textAlignVertical: 'center',
+  },
+
+  pickerStyle: {
+    fontFamily: 'Dosis-Regular',
+    width: '60%',
+    borderRadius: 10,
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
   },
 
   setting: {
+    fontFamily: 'Dosis-Regular',
     color: 'white',
-    fontSize: 20,
-    fontWeight: 'bold',
-    backgroundColor: 'rgba(0, 0, 0, 0.0)',
+  },
+
+  pickerItem: {
+    fontFamily: 'Dosis-Regular',
   },
 
   settingInfo: {
