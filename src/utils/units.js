@@ -23,6 +23,25 @@ export const localizeTemp = (temp, unit) => {
   }
 };
 
+export const localizeTempWithoutSuffix = (temp, unit) => {
+  switch (unit) {
+    case 1:
+      return Math.round(
+        convert(temp)
+          .from('F')
+          .to('C'),
+      );
+    case 2:
+      return Math.round(
+        convert(temp)
+          .from('F')
+          .to('K'),
+      );
+    default:
+      return Math.round(temp);
+  }
+};
+
 export const localizeSpeed = (speed, unit) => {
   switch (unit) {
     case 1:
@@ -43,6 +62,25 @@ export const localizeSpeed = (speed, unit) => {
       );
     default:
       return Math.round(speed) + ' m/s';
+  }
+};
+
+export const localizeSpeedWithoutSuffix = (speed, unit) => {
+  switch (unit) {
+    case 1:
+      return Math.round(
+        convert(speed)
+          .from('m/s')
+          .to('km/h'),
+      );
+    case 2:
+      return Math.round(
+        convert(speed)
+          .from('m/s')
+          .to('m/h'),
+      );
+    default:
+      return Math.round(speed);
   }
 };
 
@@ -95,7 +133,7 @@ export const localizeDistance = (distance, unit) => {
 
 export const localizeTime = unit => {
   if (unit === 1) {
-    return 'h:m A';
+    return 'hh:mm A';
   }
-  return 'H:m';
+  return 'HH:mm';
 };

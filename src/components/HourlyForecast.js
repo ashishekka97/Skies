@@ -2,6 +2,10 @@ import React, {useState} from 'react';
 import {View, Text, StyleSheet, ScrollView} from 'react-native';
 import {getTime} from '../utils/time';
 import iconName from '../utils/icons';
+import {
+  localizeTempWithoutSuffix,
+  localizeSpeedWithoutSuffix,
+} from '../utils/units';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import SegmentedControlTab from 'react-native-segmented-control-tab';
@@ -12,7 +16,7 @@ import PrecipitationGraph from './PrecipitationGraph';
 
 const HourlyForecast = props => {
   const [activeIndex, updateActiveIndex] = useState(0);
-  const {hourly, daily} = props;
+  const {hourly, daily, settings} = props;
   const temperatureData = [];
   const precipitationData = [];
   const windData = [];
@@ -23,8 +27,10 @@ const HourlyForecast = props => {
 
   const yDomainForTemperature = daily.data[0]
     ? [
-        Math.round(daily.data[0].temperatureMin) - 10,
-        Math.round(daily.data[0].temperatureMax) + 7,
+        localizeTempWithoutSuffix(daily.data[0].temperatureMin, settings[0]) -
+          10,
+        localizeTempWithoutSuffix(daily.data[0].temperatureMax, settings[0]) +
+          7,
       ]
     : null;
   const yDomainForPrecipitation = daily.data[0] ? [-2, 100] : null;
@@ -38,7 +44,7 @@ const HourlyForecast = props => {
       }
       temperatureData.push({
         x: getTime(hour.time, 'H'),
-        y: Math.round(hour.apparentTemperature),
+        y: localizeTempWithoutSuffix(hour.apparentTemperature, settings[0]),
         icon: hour.icon,
         time: hour.time,
       });
@@ -52,7 +58,7 @@ const HourlyForecast = props => {
 
       windData.push({
         x: getTime(hour.time, 'H'),
-        y: Math.round(hour.windSpeed),
+        y: localizeSpeedWithoutSuffix(hour.windSpeed, settings[1]),
         bearing: hour.windBearing,
         time: hour.time,
       });
@@ -116,8 +122,8 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
   titleText: {
+    fontFamily: 'Dosis-Bold',
     fontSize: 20,
-    fontWeight: 'bold',
     color: '#fff',
   },
   summaryContainer: {
@@ -134,10 +140,12 @@ const styles = StyleSheet.create({
     fontWeight: 'normal',
   },
   dot: {
+    fontFamily: 'Dosis-Regular',
     fontSize: 32,
     color: 'white',
   },
   summary: {
+    fontFamily: 'Dosis-Regular',
     color: 'white',
     fontSize: 16,
   },
@@ -149,6 +157,7 @@ const styles = StyleSheet.create({
     borderLeftWidth: 0,
   },
   tabText: {
+    fontFamily: 'Dosis-Regular',
     color: '#fff',
   },
   activeTab: {

@@ -25,7 +25,7 @@ const Weekly = props => {
       <View style={styles.right}>
         <Text style={styles.baseText}>
           {localizeTemp(header.temperatureMin, settings[0]) +
-            ' | ' +
+            ' · ' +
             localizeTemp(header.temperatureMax, settings[0])}
         </Text>
       </View>
@@ -44,16 +44,18 @@ const styles = StyleSheet.create({
   },
 
   baseText: {
-    fontFamily: 'Cochin',
+    fontFamily: 'Dosis-Regular',
     color: '#fff',
   },
 
   mainText: {
+    fontFamily: 'Dosis-SemiBold',
     fontSize: 16,
     color: '#fff',
   },
 
   titleText: {
+    fontFamily: 'Dosis-Regular',
     fontSize: 20,
     fontWeight: 'bold',
     color: '#fff',

@@ -1,5 +1,5 @@
 const accent = {
-  'clear-day': '#6BB9DA',
+  'clear-day': '#52ADDC',
   'clear-night': '#375A9C',
   rain: '#2E8687',
   snow: '#417EB5',

@@ -54,6 +54,7 @@ class SearchScreen extends React.Component {
   }
 
   static navigationOptions = {
+    headerStatusBarHeight: 20,
     title: 'My Places',
     headerStyle: {
       marginTop: 15,
@@ -64,6 +65,8 @@ class SearchScreen extends React.Component {
     if (query.length > 2) {
       console.log(query);
       this.props.autoComplete(query);
+    } else {
+      this.resetSuggestions();
     }
   };
 

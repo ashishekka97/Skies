@@ -21,7 +21,10 @@ const WindGraph = props => {
         >
           <VictoryAxis
             crossAxis
-            style={{axis: {stroke: 'none'}, tickLabels: {fill: 'white'}}}
+            style={{
+              axis: {stroke: 'none'},
+              tickLabels: {fill: 'white', fontFamily: 'Dosis-Regular'},
+            }}
             // tickFormat={(t) => getTime(t, 'h')}
           />
 
@@ -42,14 +45,19 @@ const WindGraph = props => {
 
           <VictoryScatter
             data={data}
-            labels={({datum}) =>  String(Math.round(datum.y))}
+            labels={({datum}) => String(Math.round(datum.y))}
             size={5}
             style={{
               parent: {
                 border: '1px solid #fff',
               },
               data: {fill: 'white'},
-              labels: {fontSize: 15, fill: '#fff', padding: 15},
+              labels: {
+                fontSize: 15,
+                fill: '#fff',
+                padding: 15,
+                fontFamily: 'Dosis-Regular',
+              },
             }}
             dataComponent={<WindPoint />}
           />

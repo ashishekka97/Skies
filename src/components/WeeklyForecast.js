@@ -93,8 +93,8 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
   titleText: {
+    fontFamily: 'Dosis-Bold',
     fontSize: 20,
-    fontWeight: 'bold',
     color: '#fff',
   },
   summaryContainer: {
@@ -110,10 +110,12 @@ const styles = StyleSheet.create({
     fontWeight: 'normal',
   },
   dot: {
+    fontFamily: 'Dosis-Regular',
     fontSize: 32,
     color: 'white',
   },
   summary: {
+    fontFamily: 'Dosis-Regular',
     color: 'white',
     fontSize: 16,
   },

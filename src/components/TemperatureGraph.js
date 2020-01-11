@@ -20,7 +20,10 @@ const TemperatureGraph = props => {
           domain={yDomain ? {y: yDomain} : null}>
           <VictoryAxis
             crossAxis
-            style={{axis: {stroke: 'none'}, tickLabels: {fill: 'white'}}}
+            style={{
+              axis: {stroke: 'none'},
+              tickLabels: {fill: 'white', fontFamily: 'Dosis-Regular'},
+            }}
             // tickFormat={(t) => getTime(t, 'h')}
           />
 
@@ -48,7 +51,11 @@ const TemperatureGraph = props => {
                 border: '1px solid #fff',
               },
               data: {fill: 'white'},
-              labels: {fontSize: 15, fill: '#fff', padding: 15},
+              labels: {
+                fill: '#fff',
+                padding: 15,
+                fontFamily: 'Dosis-Regular',
+              },
             }}
             dataComponent={<DataPoint />}
           />
