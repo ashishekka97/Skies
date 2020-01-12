@@ -1,11 +1,11 @@
 import React, {useCallback, useState} from 'react';
-import {FlatList, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const SavedList = props => {
-  const {places, onSelect} = props;
+  const {places, onSelect, onDelete} = props;
 
-  const renderItem = item => {
-    //console.log(item);
+  const renderItem = (item) => {
     return (
       <TouchableOpacity
         underlayColor="rgba(255, 255, 255, 0.3)"
@@ -17,7 +17,14 @@ const SavedList = props => {
             usingGPS: false,
           });
         }}>
-        <Text style={styles.resultText}>{item.item.label}</Text>
+        <View style={styles.city}>
+          <Text style={styles.resultText}>{item.item.label}</Text>
+          <TouchableOpacity onPress={() => onDelete(item.index)}>
+            <Text style={styles.iconHolder}>
+              <Icon name="close" style={styles.icon} />
+            </Text>
+          </TouchableOpacity>
+        </View>
       </TouchableOpacity>
     );
   };
@@ -37,8 +44,6 @@ const styles = StyleSheet.create({
     width: '95%',
     margin: 10,
     marginTop: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.1)',
-    borderRadius: 12,
   },
 
   resultItem: {
@@ -50,6 +55,30 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 16,
     padding: 10,
+    width: '90%',
+  },
+
+  city: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 10,
+    marginVertical: 10,
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    borderRadius: 12,
+  },
+
+  iconHolder: {
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+    borderRadius: 15,
+    padding: 5,
+  },
+
+  icon: {
+    fontSize: 24,
+    color: '#fff',
+    textAlignVertical: 'center',
+    fontWeight: 'normal',
   },
 });
 
