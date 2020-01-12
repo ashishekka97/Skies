@@ -7,6 +7,7 @@ import {
   resetAutoComplete,
   getGeocode,
   saveLocation,
+  deleteLocation,
   setCurrentLocation,
 } from '../redux/actions';
 import SuggestionList from '../components/SuggestionList';
@@ -99,6 +100,7 @@ class SearchScreen extends React.Component {
         <SavedList
           places={this.props.savedLocations}
           onSelect={this.props.setLocation}
+          onDelete={this.props.deleteLocation}
         />
       </View>
     );
@@ -148,6 +150,10 @@ const mapDispatchToProps = dispatch => {
 
     setLocation: location => {
       dispatch(setCurrentLocation(location));
+    },
+
+    deleteLocation: index => {
+      dispatch(deleteLocation(index));
     },
   };
 };
