@@ -9,6 +9,7 @@ import {
 import {getCurrentLocation} from '../utils/location';
 // import { connect } from 'react-redux';
 // import { getReverseGeoCode, getWeatherData } from '../redux/actions';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const CurrentLocation = props => {
   const {onSelect} = props;
@@ -42,29 +43,28 @@ const CurrentLocation = props => {
   };
 
   return (
-    <View style={styles.resultContainer}>
-      <TouchableOpacity
-        underlayColor="rgba(255, 255, 255, 0.3)"
-        onPress={() => {
-          getCurrentLocation(updateLogic, errorLogic);
-        }}>
+    <TouchableOpacity
+      onPress={() => {
+        getCurrentLocation(updateLogic, errorLogic);
+      }}>
+      <View style={styles.city}>
         <Text style={styles.resultText}>Current Location</Text>
-      </TouchableOpacity>
-    </View>
+        <Text style={styles.iconHolder}>
+          <Icon name="crosshairs-gps" style={styles.icon} />
+        </Text>
+      </View>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
-  resultContainer: {
-    width: '95%',
-    margin: 10,
-    marginTop: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+  city: {
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 10,
+    marginVertical: 10,
     borderRadius: 12,
-  },
-
-  resultItem: {
-    padding: 16,
   },
 
   resultText: {
@@ -72,6 +72,20 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 16,
     padding: 10,
+    width: '90%',
+  },
+
+  iconHolder: {
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+    borderRadius: 15,
+    padding: 5,
+  },
+
+  icon: {
+    fontSize: 16,
+    color: '#fff',
+    textAlignVertical: 'center',
+    fontWeight: 'normal',
   },
 });
 

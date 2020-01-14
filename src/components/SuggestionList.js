@@ -30,9 +30,8 @@ const SuggestionList = props => {
 const styles = StyleSheet.create({
   resultContainer: {
     position: 'absolute',
-    top: 130,
-    width: '95%',
-    margin: 10,
+    top: 110,
+    width: '100%',
     marginTop: 0,
     backgroundColor: 'rgba(0, 0, 0, 1)',
     borderRadius: 12,

@@ -46,7 +46,7 @@ class SearchScreen extends React.Component {
         latitude: this.props.latitude,
         longitude: this.props.longitude,
       });
-      this.props.setLocation({
+      this.onSetLocation({
         label: this.state.label,
         latitude: this.props.latitude,
         longitude: this.props.longitude,
@@ -82,6 +82,11 @@ class SearchScreen extends React.Component {
     this.props.geocode(label);
   };
 
+  onSetLocation = location => {
+    this.props.navigation.goBack();
+    this.props.setLocation(location);
+  };
+
   render() {
     const {navigation} = this.props;
     const dynamicBackground = {
@@ -91,17 +96,17 @@ class SearchScreen extends React.Component {
       <View style={[styles.background, dynamicBackground]}>
         <View style={styles.container}>
           <SearchBar onChangeText={this.getSuggestions} />
+          <SuggestionList
+            suggestions={this.props.suggestions}
+            onSelect={this.initiateSave}
+          />
+          <CurrentLocation onSelect={this.onSetLocation} />
+          <SavedList
+            places={this.props.savedLocations}
+            onSelect={this.onSetLocation}
+            onDelete={this.props.deleteLocation}
+          />
         </View>
-        <SuggestionList
-          suggestions={this.props.suggestions}
-          onSelect={this.initiateSave}
-        />
-        <CurrentLocation onSelect={this.props.setLocation} />
-        <SavedList
-          places={this.props.savedLocations}
-          onSelect={this.props.setLocation}
-          onDelete={this.props.deleteLocation}
-        />
       </View>
     );
   }
@@ -109,8 +114,6 @@ class SearchScreen extends React.Component {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    height: 100,
-    alignContent: 'flex-start',
   },
 
   container: {
