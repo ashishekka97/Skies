@@ -1,14 +1,55 @@
-import React, {useCallback, useState} from 'react';
-import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import React from 'react';
+import {
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  Dimensions,
+  ToastAndroid,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {getCurrentLocation} from '../utils/location';
 
 const SavedList = props => {
   const {places, onSelect, onDelete} = props;
 
-  const renderItem = (item) => {
+  const onDeletePress = item => {
+    onDelete(item.index);
+    getCurrentLocation(updateLogic, errorLogic);
+  };
+
+  const updateLogic = position => {
+    console.log('Here');
+    onSelect({
+      label: 'Current Location',
+      latitude: position.coords.latitude,
+      longitude: position.coords.longitude,
+      usingGPS: true,
+    });
+  };
+
+  const showToast = (message, duration = 'SHORT', position = 'BOTTOM') => {
+    ToastAndroid.show(message, ToastAndroid[duration], ToastAndroid[position]);
+  };
+
+  const errorLogic = error => {
+    switch (error.code) {
+      case 1:
+        break;
+      case 2:
+        break;
+      case 3:
+        showToast(error.message, 'SHORT', 'BOTTOM');
+        break;
+      default:
+        showToast(error.message);
+    }
+  };
+
+  const renderItem = item => {
     return (
       <TouchableOpacity
-        underlayColor="rgba(255, 255, 255, 0.3)"
         onPress={() => {
           onSelect({
             label: item.item.label,
@@ -19,7 +60,7 @@ const SavedList = props => {
         }}>
         <View style={styles.city}>
           <Text style={styles.resultText}>{item.item.label}</Text>
-          <TouchableOpacity onPress={() => onDelete(item.index)}>
+          <TouchableOpacity onPress={() => onDeletePress(item)}>
             <Text style={styles.iconHolder}>
               <Icon name="close" style={styles.icon} />
             </Text>
@@ -31,7 +72,7 @@ const SavedList = props => {
 
   return (
     <FlatList
-      style={styles.resultContainer}
+      style={styles.list}
       data={places}
       renderItem={renderItem}
       keyExtractor={(item, index) => 'location_' + index}
@@ -40,22 +81,9 @@ const SavedList = props => {
 };
 
 const styles = StyleSheet.create({
-  resultContainer: {
-    width: '95%',
-    margin: 10,
-    marginTop: 0,
-  },
-
-  resultItem: {
-    padding: 16,
-  },
-
-  resultText: {
-    fontFamily: 'Dosis-Regular',
-    color: 'white',
-    fontSize: 16,
-    padding: 10,
-    width: '90%',
+  list: {
+    backgroundColor: 'rgba(0, 0, 0, 0.0)',
+    height: Dimensions.get('screen').height / 1.33,
   },
 
   city: {
@@ -68,6 +96,14 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
 
+  resultText: {
+    fontFamily: 'Dosis-Regular',
+    color: 'white',
+    fontSize: 16,
+    padding: 10,
+    width: '90%',
+  },
+
   iconHolder: {
     backgroundColor: 'rgba(0, 0, 0, 0.2)',
     borderRadius: 15,
@@ -75,7 +111,7 @@ const styles = StyleSheet.create({
   },
 
   icon: {
-    fontSize: 24,
+    fontSize: 16,
     color: '#fff',
     textAlignVertical: 'center',
     fontWeight: 'normal',

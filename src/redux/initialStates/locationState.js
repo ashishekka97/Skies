@@ -102,3 +102,12 @@ export const suggestions = [
     matchLevel: 'county',
   },
 ];
+
+export const savedLocations = [
+  {
+    label: 'Current Location',
+    latitude: 41.88449,
+    longitude: -87.63877,
+    usingGPS: true,
+  },
+]
