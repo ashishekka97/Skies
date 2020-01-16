@@ -103,6 +103,7 @@ class SearchScreen extends React.Component {
           <CurrentLocation onSelect={this.onSetLocation} />
           <SavedList
             places={this.props.savedLocations}
+            current={this.props.currentLocation}
             onSelect={this.onSetLocation}
             onDelete={this.props.deleteLocation}
           />
@@ -129,6 +130,7 @@ const mapStateToProps = state => {
     latitude: state.location.geocode.Latitude,
     longitude: state.location.geocode.Longitude,
     savedLocations: state.location.savedLocations,
+    currentLocation: state.location.currentLocation,
   };
 };
 
