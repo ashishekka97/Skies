@@ -6,17 +6,17 @@ const darkSkyProvider = axios.create({
 });
 
 const hereMapsProvider = axios.create({
-  baseURL: 'https://reverse.geocoder.api.here.com/6.2',
+  baseURL: 'https://reverse.geocoder.ls.hereapi.com/6.2/',
   timeout: 10000,
 });
 
 const autoCompleteProvider = axios.create({
-  baseURL: 'https://autocomplete.geocoder.api.here.com/6.2',
+  baseURL: 'https://autocomplete.geocoder.ls.hereapi.com/6.2/',
   timeout: 10000,
 });
 
 const geocodingProvider = axios.create({
-  baseURL: 'https://geocoder.api.here.com/6.2',
+  baseURL: 'https://geocoder.ls.hereapi.com/6.2/',
   timeout: 10000,
 });
 

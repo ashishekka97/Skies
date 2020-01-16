@@ -4,7 +4,6 @@ import {
   geocodeAPI as API3,
 } from '../utils/networkManager';
 import {hereMaps as key} from '../../../configs/apiKeys';
-import {hereMaps as id} from '../../../configs/appIDs';
 
 export function fetchReverseGeocode(lat = '37.8267', lon = '-122.4233') {
   return API.get(
@@ -14,8 +13,7 @@ export function fetchReverseGeocode(lat = '37.8267', lon = '-122.4233') {
       mode: 'retrieveAddress',
       maxresults: 1,
       gen: 9,
-      app_id: id,
-      app_code: key,
+      apiKey: key,
     },
     {},
   ).then(response => {
@@ -27,8 +25,7 @@ export function fetchAutoComplete(query) {
   return API2.get(
     '/suggest.json',
     {
-      app_id: id,
-      app_code: key,
+      apiKey: key,
       query: query,
       beginHighlight: '',
       endHighlight: '',
@@ -44,8 +41,7 @@ export function fetchGeocode(label = 'India, Nagpur') {
     '/geocode.json',
     {
       searchtext: label,
-      app_code: key,
-      app_id: id,
+      apiKey: key,
     },
     {},
   ).then(response => {

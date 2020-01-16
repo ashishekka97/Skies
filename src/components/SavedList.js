@@ -12,11 +12,13 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {getCurrentLocation} from '../utils/location';
 
 const SavedList = props => {
-  const {places, onSelect, onDelete} = props;
+  const {places, current, onSelect, onDelete} = props;
 
   const onDeletePress = item => {
     onDelete(item.index);
-    getCurrentLocation(updateLogic, errorLogic);
+    if (item.item.label === current.label) {
+      getCurrentLocation(updateLogic, errorLogic);
+    }
   };
 
   const updateLogic = position => {
