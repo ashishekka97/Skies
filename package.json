@@ -17,6 +17,7 @@
     "react": "16.9.0",
     "react-native": "0.61.1",
     "react-native-app-intro-slider": "^3.0.0",
+    "react-native-bootsplash": "^1.2.1",
     "react-native-collapsible": "^1.5.1",
     "react-native-geocoding": "^0.4.0",
     "react-native-geolocation-service": "^3.1.0",
