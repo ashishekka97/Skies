@@ -1,9 +1,9 @@
 # Skies
 ### A simple weather app made in React Native
 ## Screenshots
-![Details](./screenshots/details.png | width=100px) ![Hourly](./screenshots/hourly.png | width=100px)
-![Places](./screenshots/places.png | width=100px) ![Settings](./screenshots/settings.png | width=100px)
-![Weekly](./screenshots/weekly.png | width=100px) 
+![Details](./screenshots/details.png) ![Hourly](./screenshots/hourly.png)
+![Places](./screenshots/places.png) ![Settings](./screenshots/settings.png)
+![Weekly](./screenshots/weekly.png) 
 ## Useage
 #### Android
 ##### Install
