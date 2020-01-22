@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Image} from 'react-native';
 
 import Details from './Details';
 import HourlyForecast from './HourlyForecast';
@@ -38,6 +38,10 @@ const BottomWrapper = props => {
           currently={data.currently}
         />
       </View>
+      <Image
+        source={require('../assets/others/powered-by-dark-sky.png')}
+        style={styles.powered}
+      />
     </View>
   );
 };
@@ -47,6 +51,13 @@ const styles = StyleSheet.create({
     margin: 10,
     flex: 1,
     paddingVertical: 10,
+  },
+
+  powered: {
+    height: 40,
+    resizeMode: 'contain',
+    alignSelf: 'center',
+    paddingBottom: 10,
   },
 });
 
