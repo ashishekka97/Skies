@@ -6,6 +6,7 @@ import {PersistGate} from 'redux-persist/integration/react';
 import Navigation from './navigation';
 import configureStore from './redux/store/configureStore';
 import rootSaga from './redux/sagas';
+import Loader from './components/Loader';
 
 const storage = configureStore();
 storage.runSaga(rootSaga);
@@ -14,12 +15,12 @@ let persistor = storage.persistor(storage.store);
 const App = () => {
   return (
     <Provider store={storage.store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <StatusBar translucent backgroundColor="transparent" />
-        <SafeAreaView style={styles.container}>
+      <StatusBar translucent backgroundColor="transparent" />
+      <SafeAreaView style={styles.container}>
+        <PersistGate loading={<Loader />} persistor={persistor}>
           <Navigation />
-        </SafeAreaView>
-      </PersistGate>
+        </PersistGate>
+      </SafeAreaView>
     </Provider>
   );
 };

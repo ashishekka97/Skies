@@ -133,9 +133,7 @@ const weatherReducer = (state = initialState, action) => {
       };
 
     default:
-      return {
-        ...state,
-      };
+      return state;
   }
 };
 

@@ -16,6 +16,7 @@ import {
   DELETE_LOCATION_REQUEST,
   SET_CURRENT_LOCATION,
   SET_PREFERENCE,
+  SET_FIRST_LAUNCH,
 } from './types';
 
 export const getWeatherData = (lat, lon) => ({
@@ -104,3 +105,7 @@ export const setPreference = (preferenceId, optionIndex) => ({
   preferenceId,
   optionIndex,
 });
+
+export const setFirstLaunch = () => ({
+  type: SET_FIRST_LAUNCH,
+})
