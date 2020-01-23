@@ -3,9 +3,15 @@ import {ScrollView, ToastAndroid, RefreshControl} from 'react-native';
 import WeatherImage from '../components/WeatherImage';
 import BottomWrapper from '../components/BottomWrapper';
 import {connect} from 'react-redux';
-import {getWeatherData, getReverseGeoCode} from '../redux/actions';
+import {
+  getWeatherData,
+  getReverseGeoCode,
+  setFirstLaunch,
+  setCurrentLocation,
+} from '../redux/actions';
 import Loader from '../components/Loader';
 import {getCurrentLocation} from '../utils/location';
+import WelcomeScreen from './WelcomeScreen';
 
 class HomeScreen extends React.Component {
   state = {
@@ -89,7 +95,9 @@ class HomeScreen extends React.Component {
 
   render() {
     const {weather, isLoading, location, settings} = this.props;
-    return (
+    return settings[5] === 0 ? (
+      <WelcomeScreen {...this.props} />
+    ) : (
       <>
         {this.state.isLocating ? (
           <Loader />
@@ -139,6 +147,14 @@ const mapDispatchToProps = dispatch => {
 
     fetchCity: (lat, lon) => {
       return dispatch(getReverseGeoCode(lat, lon));
+    },
+
+    firstLaunch: () => {
+      return dispatch(setFirstLaunch());
+    },
+
+    setLocation: location => {
+      return dispatch(setCurrentLocation(location));
     },
   };
 };

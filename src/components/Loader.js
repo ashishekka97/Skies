@@ -2,7 +2,7 @@ import React from 'react';
 import {ActivityIndicator, StyleSheet, View} from 'react-native';
 
 const Loader = props => {
-  const {color = 'black', size = 'large'} = props;
+  const {color = 'white', size = 'large'} = props;
 
   return (
     <View style={[styles.container, styles.horizontal]}>
@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
+    backgroundColor: '#375A9C',
   },
   horizontal: {
     flexDirection: 'row',
