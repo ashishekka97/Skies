@@ -1,4 +1,4 @@
-package com.skies;
+package me.ashishekka.skies;
 
 import android.app.Application;
 import android.content.Context;
@@ -16,7 +16,7 @@ public class MainApplication extends Application implements ReactApplication {
       new ReactNativeHost(this) {
         @Override
         public boolean getUseDeveloperSupport() {
-          return BuildConfig.DEBUG;
+          return me.ashishekka.skies.BuildConfig.DEBUG;
         }
 
         @Override
@@ -52,7 +52,7 @@ public class MainApplication extends Application implements ReactApplication {
    * @param context
    */
   private static void initializeFlipper(Context context) {
-    if (BuildConfig.DEBUG) {
+    if (me.ashishekka.skies.BuildConfig.DEBUG) {
       try {
         /*
          We use reflection here to pick up the class that initializes Flipper,
