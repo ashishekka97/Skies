@@ -1,4 +1,4 @@
-package com.skies;
+package me.ashishekka.skies;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
