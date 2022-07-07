@@ -13,7 +13,7 @@
     "@react-native-community/async-storage": "^1.7.1",
     "axios": "^0.21.1",
     "convert-units": "^2.3.4",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "react": "16.9.0",
     "react-native": "0.61.1",
     "react-native-app-intro-slider": "^3.0.0",
